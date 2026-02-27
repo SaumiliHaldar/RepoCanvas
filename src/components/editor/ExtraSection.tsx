@@ -16,7 +16,7 @@ const ExtraSection: React.FC = () => {
           <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Customizations</h3>
           <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Additional profile features</p>
         </div>
-        <div className="p-3 tech-border bg-white/[0.02] text-gray-500">
+        <div className="p-3 tech-border bg-white/2 text-gray-500">
           <Sparkles className="w-5 h-5" />
         </div>
       </div>
@@ -60,7 +60,7 @@ const ExtraSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="h-[1px] w-full bg-white/5" />
+        <div className="h-px w-full bg-white/5" />
 
         {/* Contribution Games */}
         <div className="space-y-6">
@@ -69,7 +69,7 @@ const ExtraSection: React.FC = () => {
             <label className="text-[9px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono whitespace-nowrap">
               Interactive Games
             </label>
-            <div className="h-[1px] flex-1 bg-white/5" />
+            <div className="h-px flex-1 bg-white/5" />
           </div>
 
           <div className="grid grid-cols-1 gap-4">
@@ -81,7 +81,7 @@ const ExtraSection: React.FC = () => {
               //@ts-ignore
               const active = statsConfig[game.id];
               return (
-                <div key={game.id} className="tech-border bg-[#0a0a0a] p-4 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-300 hover:bg-white/[0.01]">
+                <div key={game.id} className="tech-border bg-[#0a0a0a] p-4 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-300 hover:bg-white/1">
                   <div className="flex items-center gap-4">
                     <div className={`p-2 tech-border ${active ? 'bg-cyan-500/10 text-cyan-400' : 'bg-white/5 text-gray-600'}`}>
                       <game.icon className="w-4 h-4" />

@@ -22,7 +22,7 @@ export const generateMarkdown = (state: AppState): string => {
 
   switch (templateId) {
     case 'nexus-pro':
-      return generateNexusProTemplate(userInfo, socials, categoricalSkills, aboutMe, featuredProject, funFact, bannerUrl, statsConfig, themes);
+      return generateNexusProTemplate(userInfo, socials, categoricalSkills, aboutMe, featuredProject, funFact, bannerUrl, statsConfig, themes, githubTheme);
     case 'tech-grid':
       return generateTechGridTemplate(userInfo, socials, categoricalSkills, bannerUrl, statsConfig, themes);
     case 'stats-pro':
@@ -206,10 +206,13 @@ const generateNexusProTemplate = (
   funFact: string,
   bannerUrl: string,
   config: any,
-  themes: ReturnType<typeof resolveThemes>
+  themes: ReturnType<typeof resolveThemes>,
+  githubTheme: 'dark' | 'light'
 ) => {
   let md = getBannerSection(bannerUrl);
-  md += `<h1 align="center">\n  Hey there! 👋 I'm <span style="color:#007acc;">${userInfo.name || 'Your Name'}</span>\n</h1>\n`;
+  const nameColor = githubTheme === 'dark' ? '#58a6ff' : '#0969da';
+  const textColor = githubTheme === 'dark' ? '#e6edf3' : '#1f2328';
+  md += `<h1 align="center" style="color:${textColor};">\n  Hey there! 👋 I'm <span style="color:${nameColor};">${userInfo.name || 'Your Name'}</span>\n</h1>\n`;
   if (userInfo.title) md += `<h3 align="center">\n  🚀 ${userInfo.title}\n</h3>\n\n`;
 
   if (config.showViews && socials.github) {

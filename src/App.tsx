@@ -108,9 +108,7 @@ function App() {
         </div>
         
         <div className="flex-1 overflow-y-auto custom-scrollbar p-8 bg-[#020202]">
-          <div className="max-w-3xl mx-auto bg-[#0d1117] p-12 min-h-full border border-[#30363d] rounded-md shadow-sm">
-            <LivePreview viewMode={viewMode} />
-          </div>
+          <LivePreview viewMode={viewMode} />
         </div>
       </div>
     </MainLayout>

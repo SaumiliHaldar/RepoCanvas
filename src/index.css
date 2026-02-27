@@ -143,15 +143,3 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-
-/* Prose overrides */
-.prose {
-  color: #a0a0a0 !important;
-}
-
-.prose h1,
-.prose h2,
-.prose h3 {
-  color: #fff !important;
-  font-weight: 600 !important;
-}

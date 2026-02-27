@@ -70,7 +70,7 @@ const SkillsSection: React.FC = () => {
                 <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono">
                   {category} <span className="text-gray-700 ml-2">// COUNT: {filteredSkills.length}</span>
                 </h3>
-                <div className="h-[1px] flex-1 bg-white/5" />
+                <div className="h-px flex-1 bg-white/5" />
               </div>
               
               <div className="flex flex-wrap gap-4">
@@ -83,7 +83,7 @@ const SkillsSection: React.FC = () => {
                       className={`relative px-4 py-2.5 flex items-center gap-3 transition-all duration-300 border font-mono text-[10px] uppercase tracking-wider ${
                         active
                           ? 'bg-cyan-500/10 border-cyan-500/50 text-white shadow-[0_0_20px_rgba(6,182,212,0.15)]' 
-                          : 'bg-white/[0.02] border-white/5 text-gray-500 hover:border-white/20 hover:text-gray-300'
+                          : 'bg-white/2 border-white/5 text-gray-500 hover:border-white/20 hover:text-gray-300'
                       }`}
                     >
                       {active && <div className="absolute top-0 left-0 w-1 h-1 bg-cyan-500" />}
