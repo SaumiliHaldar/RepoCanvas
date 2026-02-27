@@ -17,8 +17,8 @@ const ProfileSection: React.FC = () => {
     <div className="space-y-10 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
-          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Core_Identity</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Primary_Data_Link</p>
+          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Profile Details</h3>
+          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Your basic information</p>
         </div>
         <div className="p-3 tech-border bg-white/[0.02] text-gray-500">
           <User className="w-5 h-5" />
@@ -29,7 +29,7 @@ const ProfileSection: React.FC = () => {
         {/* Name */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">[01]</span> Full_Name
+            <span className="text-cyan-500/40">[01]</span> Full Name
           </label>
           <div className="relative">
             <input
@@ -37,7 +37,7 @@ const ProfileSection: React.FC = () => {
               name="name"
               value={userInfo.name}
               onChange={handleChange}
-              placeholder="eg: John Doe"
+              placeholder="John Doe"
               className={inputClasses}
             />
             <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500 group-focus-within:w-full transition-all duration-500" />
@@ -47,7 +47,7 @@ const ProfileSection: React.FC = () => {
         {/* Title */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">[02]</span> Professional_Role
+            <span className="text-cyan-500/40">[02]</span> Current Title
           </label>
           <div className="relative">
             <input
@@ -55,7 +55,7 @@ const ProfileSection: React.FC = () => {
               name="title"
               value={userInfo.title}
               onChange={handleChange}
-              placeholder="eg: Senior Fullstack Engineer"
+              placeholder="Senior Fullstack Engineer"
               className={inputClasses}
             />
             <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500 group-focus-within:w-full transition-all duration-500" />
@@ -65,7 +65,7 @@ const ProfileSection: React.FC = () => {
         {/* Location */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">[03]</span> Geo_Coordinates
+            <span className="text-cyan-500/40">[03]</span> Location
           </label>
           <div className="relative">
             <input
@@ -73,7 +73,7 @@ const ProfileSection: React.FC = () => {
               name="location"
               value={userInfo.location}
               onChange={handleChange}
-              placeholder="eg: San Francisco, CA"
+              placeholder="San Francisco, CA"
               className={inputClasses}
             />
             <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500 group-focus-within:w-full transition-all duration-500" />
@@ -83,7 +83,7 @@ const ProfileSection: React.FC = () => {
         {/* Company */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">[04]</span> Institution_ID
+            <span className="text-cyan-500/40">[04]</span> Company / Org
           </label>
           <div className="relative">
             <input
@@ -91,7 +91,7 @@ const ProfileSection: React.FC = () => {
               name="company"
               value={userInfo.company}
               onChange={handleChange}
-              placeholder="eg: Google / Freelance / MIT"
+              placeholder="Google / Freelance / MIT"
               className={inputClasses}
             />
             <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500 group-focus-within:w-full transition-all duration-500" />
@@ -101,7 +101,7 @@ const ProfileSection: React.FC = () => {
         {/* Email */}
         <div className="space-y-3 group md:col-span-2">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">[05]</span> Direct_Comms_Hash
+            <span className="text-cyan-500/40">[05]</span> Email Address
           </label>
           <div className="relative">
             <input
@@ -109,7 +109,7 @@ const ProfileSection: React.FC = () => {
               name="email"
               value={userInfo.email}
               onChange={handleChange}
-              placeholder="eg: hello@johndoe.dev"
+              placeholder="hello@johndoe.dev"
               className={inputClasses}
             />
             <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500 group-focus-within:w-full transition-all duration-500" />
@@ -120,7 +120,7 @@ const ProfileSection: React.FC = () => {
         <div className="space-y-4 group md:col-span-2 pt-4">
           <div className="flex items-center gap-4">
             <label className="text-[9px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono whitespace-nowrap">
-              Extended_Manifesto // SUMMARY_BLOCK
+              About Me // BRIEF_SUMMARY
             </label>
             <div className="h-[1px] flex-1 bg-white/10" />
           </div>

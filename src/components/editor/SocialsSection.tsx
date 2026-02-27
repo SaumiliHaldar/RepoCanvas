@@ -16,7 +16,7 @@ const SocialsSection: React.FC = () => {
 
   const socialFields = [
     { name: 'github', label: 'GitHub', icon: Github, placeholder: 'yourname' },
-    { name: 'linkedin', label: 'LinkedIn', icon: Linkedin, placeholder: 'yourname' },
+    { name: 'linkedin', label: 'LinkedIn', icon: Linkedin, placeholder: 'https://linkedin.com/in/...' },
     { name: 'twitter', label: 'Twitter (X)', icon: Twitter, placeholder: 'yourname' },
     { name: 'website', label: 'Portfolio', icon: Globe, placeholder: 'https://...' },
     { name: 'email', label: 'Email', icon: Mail, placeholder: 'hello@...' },
@@ -37,8 +37,8 @@ const SocialsSection: React.FC = () => {
     <div className="space-y-10 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
-          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Comms_Array</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Signal_Broadcast_Link</p>
+          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Social Profiles</h3>
+          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Links to your social presence</p>
         </div>
         <div className="p-3 tech-border bg-white/[0.02] text-gray-500">
           <Share2 className="w-5 h-5" />
@@ -51,7 +51,7 @@ const SocialsSection: React.FC = () => {
           return (
             <div key={field.name} className="space-y-3 group">
               <label className={labelClasses}>
-                <span className="text-cyan-500/40">//</span> {field.label}
+                {field.label}
               </label>
               <div className="relative flex items-center">
                 <div className="absolute left-3 text-gray-600 group-focus-within:text-cyan-500/50 transition-colors">
@@ -62,7 +62,7 @@ const SocialsSection: React.FC = () => {
                   name={field.name}
                   value={(socials as any)[field.name]}
                   onChange={handleSocialChange}
-                  placeholder={`eg: ${field.placeholder}`}
+                  placeholder={field.placeholder}
                   className={`${inputClasses} pl-10`}
                 />
                 <div className="absolute right-0 top-0 w-[1px] h-full bg-cyan-500/0 group-focus-within:bg-cyan-500/40 transition-all" />

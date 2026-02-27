@@ -39,15 +39,15 @@ const SkillsSection: React.FC = () => {
     <div className="space-y-10 animate-in fade-in duration-1000">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 relative">
         <div>
-          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Skill_Matrix</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Tech_Stack_Audit</p>
+          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Technologies</h3>
+          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Select your technical skills</p>
         </div>
         
         <div className="relative group w-full md:w-72">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-cyan-500 transition-all duration-300" />
           <input
             type="text"
-            placeholder="FILTER_RESOURCES..."
+            placeholder="Search skills..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-[#0a0a0a] border border-white/10 rounded-none pl-12 pr-5 py-3 text-xs text-gray-200 focus:outline-none focus:border-cyan-500/50 font-mono transition-all placeholder:text-gray-700"
@@ -68,7 +68,7 @@ const SkillsSection: React.FC = () => {
               <div className="flex items-center gap-4">
                 <div className="w-1.5 h-1.5 bg-gray-800" />
                 <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono">
-                  {category.replace(/\s+/g, '_')} <span className="text-gray-700 ml-2">// LEN: {filteredSkills.length}</span>
+                  {category} <span className="text-gray-700 ml-2">// COUNT: {filteredSkills.length}</span>
                 </h3>
                 <div className="h-[1px] flex-1 bg-white/5" />
               </div>
@@ -89,7 +89,7 @@ const SkillsSection: React.FC = () => {
                       {active && <div className="absolute top-0 left-0 w-1 h-1 bg-cyan-500" />}
                       <div className="relative">
                         <img 
-                          src={`https://skillicons.dev/icons?i=${skill}`} 
+                          src={`https://skillicons.dev/icons?i=${skill === 'reactnative' ? 'react' : skill}`} 
                           className={`w-4 h-4 transition-all duration-500 ${active ? 'scale-110' : 'grayscale opacity-40 group-hover:grayscale-0'}`}
                           alt={skill}
                         />

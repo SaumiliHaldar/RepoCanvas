@@ -13,8 +13,8 @@ const ExtraSection: React.FC = () => {
     <div className="space-y-10 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
-          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Sys_Augments</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Banner_&_Interface_Mods</p>
+          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Customizations</h3>
+          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Additional profile features</p>
         </div>
         <div className="p-3 tech-border bg-white/[0.02] text-gray-500">
           <Sparkles className="w-5 h-5" />
@@ -25,7 +25,7 @@ const ExtraSection: React.FC = () => {
         {/* Banner URL */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">//</span> Banner_Image_Resource
+            Profile Banner
           </label>
           <div className="relative flex items-center">
             <div className="absolute left-3 text-gray-600 group-focus-within:text-cyan-500/50 transition-colors">
@@ -35,25 +35,25 @@ const ExtraSection: React.FC = () => {
               type="text"
               value={bannerUrl}
               onChange={(e) => setBannerUrl(e.target.value)}
-              placeholder="eg: https://raw.githubusercontent.com/..."
+              placeholder="https://raw.githubusercontent.com/..."
               className={`${inputClasses} pl-10`}
             />
           </div>
           <div className="flex items-center gap-2 px-1">
-            <p className="text-[8px] text-gray-600 font-bold uppercase tracking-widest opacity-60 font-mono">Status: External_Asset_Linked</p>
+            <p className="text-[8px] text-gray-600 font-bold uppercase tracking-widest opacity-60 font-mono">Status: Asset Linked</p>
           </div>
         </div>
 
         {/* Fun Fact */}
         <div className="space-y-4 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">//</span> Narrative_Fragment
+            Fun Fact
           </label>
           <div className="relative">
             <textarea
               value={funFact}
               onChange={(e) => setFunFact(e.target.value)}
-              placeholder="eg: I once built a neural network that could play chess with only 128MB of RAM..."
+              placeholder="I once built a neural network that could play chess with only 128MB of RAM..."
               rows={3}
               className={`${inputClasses} resize-none group-focus-within:border-cyan-500/30`}
             />
@@ -67,16 +67,16 @@ const ExtraSection: React.FC = () => {
           <div className="flex items-center gap-4 mb-2">
             <div className="w-2 h-2 bg-gray-800" />
             <label className="text-[9px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono whitespace-nowrap">
-              Inter_Active_Modules
+              Interactive Games
             </label>
             <div className="h-[1px] flex-1 bg-white/5" />
           </div>
 
           <div className="grid grid-cols-1 gap-4">
             {[
-              { id: 'showBreakout', name: 'Breakout_v1', icon: MousePointer2, color: 'text-orange-500', bg: 'bg-orange-500/5', desc: 'Arcade_Interaction_Module' },
-              { id: 'showSnake', name: 'Snake_v1', icon: Sparkles, color: 'text-green-500', bg: 'bg-green-500/5', desc: 'Autonomous_Movement_Module' },
-              { id: 'showPacman', name: 'Pacman_v1', icon: Brain, color: 'text-yellow-500', bg: 'bg-yellow-500/5', desc: 'Entity_Consumption_Module' },
+              { id: 'showBreakout', name: 'Breakout', icon: MousePointer2, color: 'text-orange-500', bg: 'bg-orange-500/5', desc: 'Arcade Mini-game' },
+              { id: 'showSnake', name: 'Snake', icon: Sparkles, color: 'text-green-500', bg: 'bg-green-500/5', desc: 'Classic Retro Game' },
+              { id: 'showPacman', name: 'Pacman', icon: Brain, color: 'text-yellow-500', bg: 'bg-yellow-500/5', desc: 'Retro Arcade Experience' },
             ].map((game) => {
               //@ts-ignore
               const active = statsConfig[game.id];
@@ -93,14 +93,25 @@ const ExtraSection: React.FC = () => {
                   </div>
                   
                   <button
-                    onClick={() => setStatsConfig({ [game.id]: !active })}
+                    onClick={() => {
+                      if (active) {
+                        setStatsConfig({ [game.id]: false });
+                      } else {
+                        setStatsConfig({
+                          showBreakout: false,
+                          showSnake: false,
+                          showPacman: false,
+                          [game.id]: true
+                        });
+                      }
+                    }}
                     className={`w-full sm:w-auto px-6 h-10 tech-border text-[9px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${
                       active
                         ? 'bg-cyan-500 text-[#020202] border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.4)]'
                         : 'bg-white/5 text-gray-500 border-white/10 hover:bg-white/10 hover:text-gray-300'
                     }`}
                   >
-                    {active ? 'MODULE_ONLINE' : 'INIT_DEPLOY'}
+                    {active ? 'ACTIVE' : 'ENABLE'}
                   </button>
                 </div>
               );

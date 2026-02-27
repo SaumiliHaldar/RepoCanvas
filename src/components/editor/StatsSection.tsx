@@ -34,8 +34,8 @@ const StatsSection: React.FC = () => {
     <div className="space-y-10 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
-          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Metric_Analysis</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Data_Performance_Stream</p>
+          <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">GitHub Stats</h3>
+          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Visualize your activity and achievements</p>
         </div>
         <div className="p-3 tech-border bg-white/[0.02] text-gray-500">
           <BarChart3 className="w-5 h-5" />
@@ -62,7 +62,7 @@ const StatsSection: React.FC = () => {
                 <Icon className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-[10px] font-black uppercase tracking-widest">{opt.key.replace(/show/, 'EN_')}</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-widest">{opt.label}</h3>
                 <p className="text-[8px] opacity-40 uppercase tracking-tighter mt-0.5">{opt.desc}</p>
               </div>
             </button>
@@ -74,7 +74,7 @@ const StatsSection: React.FC = () => {
         <div className="flex items-center gap-4">
           <div className="w-2 h-2 bg-gray-800" />
           <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] font-mono">
-            Aesthetic_Profile // THEME_SELECT
+            Stats Theme
           </h4>
           <div className="h-[1px] flex-1 bg-white/5" />
         </div>

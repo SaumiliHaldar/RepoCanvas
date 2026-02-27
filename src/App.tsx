@@ -29,7 +29,7 @@ function App() {
         <div className="h-14 border-b border-white/10 flex items-center px-4 justify-between bg-white/[0.02]">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-cyan-500 animate-pulse" />
-            <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-cyan-500/80">Input_Buffer // MODULE_01</h2>
+            <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-cyan-500/80">Build your README</h2>
           </div>
           <span className="text-[8px] font-bold text-gray-600 tracking-tighter">SECURED_LINK_v2</span>
         </div>
@@ -68,7 +68,7 @@ function App() {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-500 animate-pulse" />
-              <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-purple-500/80">Output_Stream // RENDER_VIEW</h2>
+              <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-purple-500/80">Live Preview</h2>
             </div>
             
             {/* View Toggle */}
@@ -95,7 +95,7 @@ function App() {
               onClick={() => state.setGithubTheme(state.githubTheme === 'dark' ? 'light' : 'dark')}
               className="p-2 border border-white/10 rounded-lg bg-black/40 text-gray-500 hover:text-cyan-400 transition-colors"
             >
-              {state.githubTheme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              {state.githubTheme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
             <button 
               onClick={handleCopy}

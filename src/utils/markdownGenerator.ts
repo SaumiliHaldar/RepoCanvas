@@ -42,7 +42,7 @@ const getSocialBadges = (socials: any) => {
     },
     linkedin: {
       badge: 'https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white',
-      urlFn: (v) => `https://linkedin.com/in/${v}`,
+      urlFn: (v) => v,
     },
     twitter: {
       badge: 'https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white',
@@ -90,15 +90,23 @@ const getSocialBadges = (socials: any) => {
     },
   };
 
-  return Object.entries(socials)
+  const badges = Object.entries(socials)
     .filter(([_, val]) => val !== '')
     .map(([key, val]) => {
       const meta = socialMeta[key];
       if (!meta) return null;
       return `<a href="${meta.urlFn(val as string)}" target="_blank"><img src="${meta.badge}" /></a>`;
     })
-    .filter(Boolean)
-    .join('\n  ');
+    .filter(Boolean) as string[];
+
+  let result = "";
+  for (let i = 0; i < badges.length; i++) {
+    result += badges[i] + " ";
+    if ((i + 1) % 4 === 0 && i !== badges.length - 1) {
+      result += "<br>\n  ";
+    }
+  }
+  return result.trim();
 };
 
 // ─── Skill icons ───────────────────────────────────────────────────────────────
@@ -172,15 +180,15 @@ const getFunComponents = (username: string, config: any) => {
   let md = '';
 
   if (config.showBreakout) {
-    md += `\n### 🕹️ Breakout Game\n\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cyprieng/github-breakout/main/example/dark.svg" />\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cyprieng/github-breakout/main/example/light.svg" />\n  <img alt="Breakout Game" src="https://raw.githubusercontent.com/cyprieng/github-breakout/main/example/light.svg" />\n</picture>\n</div>\n\n`;
+    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cyprieng/github-breakout/main/example/dark.svg" />\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cyprieng/github-breakout/main/example/light.svg" />\n  <img alt="Breakout Game" src="https://raw.githubusercontent.com/cyprieng/github-breakout/main/example/light.svg" />\n</picture>\n</div>\n\n`;
   }
 
   if (config.showSnake) {
-    md += `\n### 🐍 Contribution Snake\n\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake-dark.svg" />\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />\n  <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />\n</picture>\n</div>\n\n`;
+    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake-dark.svg" />\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />\n  <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />\n</picture>\n</div>\n\n`;
   }
 
   if (config.showPacman) {
-    md += `\n### 🍕 Pacman Game\n\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph-dark.svg">\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">\n  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">\n</picture>\n</div>\n\n`;
+    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph-dark.svg">\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">\n  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">\n</picture>\n</div>\n\n`;
   }
 
   return md;
