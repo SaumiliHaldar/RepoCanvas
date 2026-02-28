@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Search } from 'lucide-react';
+import { Layout } from 'lucide-react';
 
 interface MainLayoutProps {
   children: React.ReactNode;
