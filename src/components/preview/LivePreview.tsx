@@ -26,12 +26,13 @@ const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
   };
 
   const isEmpty = isStateEmpty();
+  const isDark = state.githubTheme === 'dark';
 
   if (isEmpty) {
     return (
-      <div className="flex flex-col items-center justify-center h-full min-h-[600px] text-center space-y-4 text-[#7d8590]">
-        <Info className="w-16 h-16 opacity-50 mb-4 text-[#7d8590]" />
-        <h3 className="text-xl font-semibold text-[#e6edf3]">Ready to build your README?</h3>
+      <div className={`flex flex-col items-center justify-center h-full min-h-[600px] text-center space-y-4 ${isDark ? 'text-[#7d8590]' : 'text-[#636c76]'}`}>
+        <Info className={`w-16 h-16 opacity-50 mb-4 ${isDark ? 'text-[#7d8590]' : 'text-[#636c76]'}`} />
+        <h3 className={`text-xl font-semibold ${isDark ? 'text-[#e6edf3]' : 'text-[#1f2328]'}`}>Ready to build your README?</h3>
         <p className="text-sm max-w-md">
           Fill in the details on the left side to view your live preview here. Your generated markdown will appear instantly.
         </p>
@@ -40,7 +41,7 @@ const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
   }
 
   const markdown = generateMarkdown(state);
-  const isDark = state.githubTheme === 'dark';
+
 
   return (
     <div className="animate-in fade-in duration-500 max-w-4xl mx-auto space-y-6">

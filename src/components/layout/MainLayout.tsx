@@ -1,13 +1,15 @@
 import React from 'react';
-import { Layout } from 'lucide-react';
+import { Layout, Sun, Moon } from 'lucide-react';
+import { useStore } from '../../store/useStore';
 
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+  const state = useStore();
   return (
-    <div className="min-h-screen bg-[#020202] text-gray-400 selection:bg-cyan-500/30 selection:text-white relative overflow-hidden font-mono">
+    <div data-theme={state.githubTheme} className="min-h-screen bg-[#020202] text-gray-400 selection:bg-cyan-500/30 selection:text-white relative overflow-hidden font-mono">
       {/* Background Blueprint Grid */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute inset-0 bg-grid opacity-20" />
@@ -26,28 +28,19 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <span className="text-sm font-black text-white tracking-widest uppercase">
                 Repo_Canvas
               </span>
-              <div className="status-light status-online" />
             </div>
             <span className="text-[9px] font-bold text-cyan-500 uppercase tracking-[0.2em] opacity-80">Readme_Generator_v1.0.1</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-8">
-          <div className="hidden lg:flex items-center gap-6 text-[9px] font-bold text-gray-500 uppercase tracking-[0.3em]">
-            <div className="flex flex-col items-center">
-              <span className="opacity-40">CPU_LOAD</span>
-              <span className="text-gray-300">12.4%</span>
-            </div>
-            <div className="flex flex-col items-center border-l border-white/5 pl-6">
-              <span className="opacity-40">MEM_ALLOC</span>
-              <span className="text-gray-300">2.8GB</span>
-            </div>
-            <div className="flex flex-col items-center border-l border-white/5 pl-6">
-              <span className="opacity-40">SATELLITE_LINK</span>
-              <span className="text-cyan-500">ACTIVE</span>
-            </div>
-          </div>
-
+        <div className="flex items-center">
+          <button
+            onClick={() => state.setGithubTheme(state.githubTheme === 'dark' ? 'light' : 'dark')}
+            className="p-2 border border-white/10 rounded-lg bg-black/40 text-gray-500 hover:text-cyan-400 transition-colors"
+            title="Toggle preview theme"
+          >
+            {state.githubTheme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
         </div>
       </header>
 

@@ -1,12 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
   background-color: #020202;
   color: #a0a0a0;
+}
+
+/* Smooth theme transitions */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 h1,
@@ -15,12 +30,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   letter-spacing: -0.02em;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 
 body {
@@ -38,7 +53,10 @@ body {
 }
 
 .bg-dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
   background-size: 20px 20px;
 }
 
@@ -50,7 +68,7 @@ body {
 
 .tech-border::before,
 .tech-border::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 8px;
   height: 8px;
@@ -95,7 +113,6 @@ body {
 }
 
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;
@@ -142,4 +159,188 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT THEME
+   ───────────────────────────────────────────── */
+[data-theme="light"] {
+  background-color: #eef2f7 !important;
+  color: #334155;
+}
+
+/* ── Page root background ── */
+[data-theme="light"] .bg-\[\#020202\] {
+  background-color: #eef2f7 !important;
+}
+[data-theme="light"] .fixed.inset-0 {
+  opacity: 0.03;
+}
+
+/* ── Navbar / Header ── */
+[data-theme="light"] header {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: blur(12px);
+}
+[data-theme="light"] header .text-white,
+[data-theme="light"] header span {
+  color: #1e293b !important;
+}
+[data-theme="light"] header .text-gray-500,
+[data-theme="light"] header .text-gray-600 {
+  color: #64748b !important;
+}
+[data-theme="light"] header .text-cyan-500\/80 {
+  color: #0891b2 !important;
+}
+
+/* ── Panel and section backgrounds ── */
+[data-theme="light"] .bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+}
+[data-theme="light"] .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+[data-theme="light"] .bg-black\/70 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+[data-theme="light"] .bg-black\/90 {
+  background-color: rgba(255, 255, 255, 0.97) !important;
+}
+[data-theme="light"] .bg-white\/\[0\.02\] {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+[data-theme="light"] .bg-white\/\[0\.01\] {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+/* ── Borders ── */
+[data-theme="light"] .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.09) !important;
+}
+[data-theme="light"] .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+[data-theme="light"] .tech-border {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .tech-border::before,
+[data-theme="light"] .tech-border::after {
+  border-color: rgba(8, 145, 178, 0.35);
+}
+
+/* ── General text ── */
+[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+[data-theme="light"] .text-gray-300 {
+  color: #334155 !important;
+}
+[data-theme="light"] .text-gray-400 {
+  color: #475569 !important;
+}
+[data-theme="light"] .text-gray-500 {
+  color: #64748b !important;
+}
+[data-theme="light"] .text-gray-600 {
+  color: #475569 !important;
+}
+[data-theme="light"] .text-gray-700 {
+  color: #374151 !important;
+}
+
+/* ── Cyan/accent colors (section labels, pane titles, field numbers) ── */
+[data-theme="light"] .text-cyan-400 {
+  color: #0891b2 !important;
+}
+[data-theme="light"] .text-cyan-500 {
+  color: #0891b2 !important;
+}
+/* Tailwind opacity-variant classes like text-cyan-500/40, text-cyan-500/50, text-cyan-500/80 */
+[data-theme="light"] [class*="text-cyan-5"] {
+  color: #0891b2 !important;
+  opacity: 1 !important;
+}
+[data-theme="light"] [class*="text-cyan-4"] {
+  color: #0891b2 !important;
+  opacity: 1 !important;
+}
+[data-theme="light"] .text-purple-400,
+[data-theme="light"] .text-purple-500 {
+  color: #7c3aed !important;
+}
+[data-theme="light"] [class*="text-purple-"] {
+  opacity: 1 !important;
+}
+
+/* ── Input / Textarea / Select fields ── */
+/* bg-[#0a0a0a] is the input background — near-black, must be overridden */
+[data-theme="light"] .bg-\[\#0a0a0a\] {
+  background-color: #ffffff !important;
+}
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #1e293b !important;
+}
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+/* ── Section card ID label tags (absolute positioned, use bg-[#020202]) ── */
+[data-theme="light"] .absolute.bg-\[\#020202\] {
+  background-color: #eef2f7 !important;
+  color: #64748b !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ── Preview pane scroll area ── */
+/* The p-4/p-8 bg-[#020202] div under LivePreview */
+[data-theme="light"] main .bg-\[\#020202\] {
+  background-color: #f8fafc !important;
+}
+
+/* ── Horizontal divider lines (bg-white/10 used as <div> lines) ── */
+[data-theme="light"] .h-\[1px\].bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ── Status indicator ── */
+[data-theme="light"] .status-online {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+/* ── Scrollbar ── */
+[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+}
+[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+/* ── Scanline — hide in light mode ── */
+[data-theme="light"] .scanline {
+  opacity: 0;
+}
+
+/* ── Toast fade-in-up animation ── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.25s ease-out forwards;
 }
