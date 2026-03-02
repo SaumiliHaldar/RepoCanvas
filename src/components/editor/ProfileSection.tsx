@@ -83,7 +83,7 @@ const ProfileSection: React.FC = () => {
         {/* Company */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
-            <span className="text-cyan-500/40">[04]</span> Company / Org
+            <span className="text-cyan-500/40">[04]</span> Company / Organization
           </label>
           <div className="relative">
             <input
@@ -102,7 +102,7 @@ const ProfileSection: React.FC = () => {
         <div className="space-y-4 group md:col-span-2 pt-4">
           <div className="flex items-center gap-4">
             <label className="text-[9px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono whitespace-nowrap">
-              About Me // BRIEF_SUMMARY
+              <span className="text-cyan-500/40">[05]</span> About Me
             </label>
             <div className="h-[1px] flex-1 bg-white/10" />
           </div>
@@ -111,7 +111,7 @@ const ProfileSection: React.FC = () => {
               name="bio"
               value={userInfo.bio}
               onChange={handleChange}
-              placeholder="INITIATE_NARRATIVE_SEQUENCE..."
+              placeholder="💼 Software Developer specializing in Full Stack Development&#10;🔭 Currently working on impactful open-source projects&#10;🎯 Focused on delivering clean, scalable, and maintainable solutions"
               rows={5}
               className={`${inputClasses} resize-none group-focus-within:border-cyan-500/30`}
             />

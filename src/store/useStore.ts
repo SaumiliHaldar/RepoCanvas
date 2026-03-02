@@ -56,6 +56,7 @@ export const useStore = create<AppState>((set) => ({
     showSnake: false,
     showBreakout: false,
     showPacman: false,
+    showSpaceShooter: false,
     theme: 'tokyonight',
 
     statsTheme: 'tokyonight',

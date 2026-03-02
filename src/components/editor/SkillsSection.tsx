@@ -9,7 +9,7 @@ const SKILLS_DATABASE = {
   'Databases': ['mongodb', 'postgres', 'mysql', 'sqlite', 'redis', 'firebase', 'supabase', 'cassandra', 'dynamodb', 'planetscale', 'mariadb', 'oracle'],
   'Mobile': ['reactnative', 'flutter', 'android', 'apple', 'kotlin', 'swift', 'dart', 'ionic', 'capacitor'],
   'AI & ML': ['tensorflow', 'pytorch', 'scikitlearn', 'opencv', 'pandas', 'numpy', 'jupyter', 'anaconda', 'matplotlib'],
-  'Cloud & DevOps': ['docker', 'kubernetes', 'aws', 'gcp', 'azure', 'jenkins', 'githubactions', 'terraform', 'nginx', 'vercel', 'netlify', 'digitalocean', 'heroku', 'linux', 'bash', 'ansible', 'prometheus', 'grafana'],
+  'Cloud & DevOps': ['docker', 'kubernetes', 'aws', 'gcp', 'azure', 'jenkins', 'githubactions', 'terraform', 'nginx', 'render', 'vercel', 'netlify', 'digitalocean', 'heroku', 'linux', 'bash', 'ansible', 'prometheus', 'grafana'],
   'Design': ['figma', 'sketch', 'adobephotoshop', 'adobeillustrator', 'aftereffects', 'premiere', 'blender', 'canva'],
   'Tools': ['github', 'git', 'vscode', 'postman', 'notion', 'jest', 'vitest', 'npm', 'yarn', 'pnpm', 'obs', 'discord', 'slack', 'trello', 'jira'],
 };

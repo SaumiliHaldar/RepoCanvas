@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from '../../store/useStore';
-import { ImageIcon, MousePointer2, Sparkles, Brain } from 'lucide-react';
+import { ImageIcon, MousePointer2, Sparkles, Brain, Rocket } from 'lucide-react';
 
 const ExtraSection: React.FC = () => {
   const { bannerUrl, setBannerUrl, funFact, setFunFact, statsConfig, setStatsConfig } = useStore();
@@ -75,6 +75,7 @@ const ExtraSection: React.FC = () => {
           <div className="grid grid-cols-1 gap-4">
             {[
               { id: 'showBreakout', name: 'Breakout', icon: MousePointer2, color: 'text-orange-500', bg: 'bg-orange-500/5', desc: 'Arcade Mini-game' },
+              { id: 'showSpaceShooter', name: 'Space Shooter', icon: Rocket, color: 'text-blue-500', bg: 'bg-blue-500/5', desc: 'Galactic Battle Game' },
               { id: 'showSnake', name: 'Snake', icon: Sparkles, color: 'text-green-500', bg: 'bg-green-500/5', desc: 'Classic Retro Game' },
               { id: 'showPacman', name: 'Pacman', icon: Brain, color: 'text-yellow-500', bg: 'bg-yellow-500/5', desc: 'Retro Arcade Experience' },
             ].map((game) => {
@@ -99,6 +100,7 @@ const ExtraSection: React.FC = () => {
                       } else {
                         setStatsConfig({
                           showBreakout: false,
+                          showSpaceShooter: false,
                           showSnake: false,
                           showPacman: false,
                           [game.id]: true

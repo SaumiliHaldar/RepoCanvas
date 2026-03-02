@@ -4,7 +4,7 @@ import { generateMarkdown } from '../../utils/markdownGenerator';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import { ExternalLink, Terminal } from 'lucide-react';
+import { ExternalLink, Terminal, Info } from 'lucide-react';
 
 interface LivePreviewProps {
   viewMode: 'visual' | 'code';
@@ -12,6 +12,33 @@ interface LivePreviewProps {
 
 const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
   const state = useStore();
+  
+  const isStateEmpty = () => {
+    const hasUserInfo = Object.values(state.userInfo).some(val => val.trim() !== '');
+    const hasSocials = Object.values(state.socials).some(val => val.trim() !== '');
+    const hasAboutMe = state.aboutMe.some(val => val.trim() !== '');
+    const hasSkills = Object.values(state.categoricalSkills).some(skills => skills.length > 0);
+    const hasProject = state.featuredProject.title.trim() !== '' || state.featuredProject.description.trim() !== '' || state.featuredProject.link.trim() !== '' || state.featuredProject.features.some(f => f.trim() !== '');
+    const hasFunFact = state.funFact.trim() !== '';
+    const hasBanner = state.bannerUrl.trim() !== '';
+
+    return !hasUserInfo && !hasSocials && !hasAboutMe && !hasSkills && !hasProject && !hasFunFact && !hasBanner;
+  };
+
+  const isEmpty = isStateEmpty();
+
+  if (isEmpty) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full min-h-[600px] text-center space-y-4 text-[#7d8590]">
+        <Info className="w-16 h-16 opacity-50 mb-4 text-[#7d8590]" />
+        <h3 className="text-xl font-semibold text-[#e6edf3]">Ready to build your README?</h3>
+        <p className="text-sm max-w-md">
+          Fill in the details on the left side to view your live preview here. Your generated markdown will appear instantly.
+        </p>
+      </div>
+    );
+  }
+
   const markdown = generateMarkdown(state);
   const isDark = state.githubTheme === 'dark';
 

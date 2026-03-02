@@ -10,6 +10,8 @@ import StatsSection from './components/editor/StatsSection';
 import ExtraSection from './components/editor/ExtraSection';
 import LivePreview from './components/preview/LivePreview';
 import MainLayout from './components/layout/MainLayout';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const state = useStore();
@@ -117,6 +119,8 @@ function App() {
           <LivePreview viewMode={viewMode} />
         </div>
       </div>
+      <Analytics />
+      <SpeedInsights />
     </MainLayout>
   );
 }

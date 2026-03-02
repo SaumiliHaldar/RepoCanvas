@@ -47,6 +47,7 @@ export interface StatsConfig {
   showSnake: boolean;
   showBreakout: boolean;
   showPacman: boolean;
+  showSpaceShooter: boolean;
   theme: string;
 
   statsTheme: string;
