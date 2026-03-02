@@ -46,7 +46,7 @@ const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
               <Terminal className="w-4 h-4 text-[#7d8590]" />
               <span className="text-xs font-mono text-[#7d8590] uppercase tracking-widest font-bold">README.md</span>
             </div>
-            <pre className="p-8 text-sm font-mono text-[#e6edf3] overflow-x-auto leading-relaxed h-[calc(100vh-350px)] whitespace-pre-wrap selection:bg-[#388bfd]/30">
+            <pre className="p-8 text-sm font-mono text-[#e6edf3] overflow-x-auto leading-relaxed whitespace-pre-wrap selection:bg-[#388bfd]/30 flex-1">
               {markdown}
             </pre>
           </div>

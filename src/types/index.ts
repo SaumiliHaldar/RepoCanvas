@@ -4,7 +4,6 @@ export interface UserInfo {
   bio: string;
   location: string;
   company: string;
-  email: string;
 }
 
 export interface SocialLinks {
@@ -12,6 +11,8 @@ export interface SocialLinks {
   linkedin: string;
   twitter: string;
   website: string;
+  email: string;
+  stackoverflow: string;
   devto: string;
   instagram: string;
   youtube: string;

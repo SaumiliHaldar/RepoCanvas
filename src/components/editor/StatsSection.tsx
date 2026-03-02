@@ -3,12 +3,18 @@ import { useStore } from '../../store/useStore';
 import { BarChart3, PieChart, Trophy, Eye, Zap, Activity, Quote, Smile } from 'lucide-react';
 
 const STATS_THEMES = [
+  { id: 'default', name: 'Default', color: '#fff' },
+  { id: 'github_dark', name: 'GitHub Dark', color: '#0d1117' },
   { id: 'tokyonight', name: 'Tokyo Night', color: '#7aa2f7' },
   { id: 'dracula', name: 'Dracula', color: '#bd93f9' },
   { id: 'radical', name: 'Radical', color: '#ff3e64' },
-  { id: 'merko', name: 'Merko', color: '#abd200' },
+  { id: 'nord', name: 'Nord', color: '#81a1c1' },
+  { id: 'onedark', name: 'Onedark', color: '#e06c75' },
+  { id: 'synthwave', name: 'Synthwave', color: '#e2b714' },
+  { id: 'monokai', name: 'Monokai', color: '#eb1f6a' },
   { id: 'gruvbox', name: 'Gruvbox', color: '#fabd2f' },
-  { id: 'github_dark', name: 'GitHub Dark', color: '#1f2328' },
+  { id: 'material-palenight', name: 'Palenight', color: '#c792ea' },
+  { id: 'transparent', name: 'Transparent', color: '#0000' },
 ];
 
 const StatsSection: React.FC = () => {
@@ -79,22 +85,22 @@ const StatsSection: React.FC = () => {
           <div className="h-[1px] flex-1 bg-white/5" />
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-h-64 overflow-y-auto custom-scrollbar p-2">
           {STATS_THEMES.map((t) => (
             <button
               key={t.id}
               onClick={() => setStatsConfig({ statsTheme: t.id })}
-              className={`p-3 border text-center transition-all duration-300 group relative font-mono ${
+              className={`p-2 border text-center transition-all flex flex-col items-center justify-center duration-300 group relative font-mono ${
                 statsConfig.statsTheme === t.id
-                  ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400'
+                  ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400 scale-105 shadow-md shadow-cyan-500/10'
                   : 'bg-white/[0.02] border-white/5 text-gray-600 hover:border-white/20 hover:text-gray-400'
               }`}
             >
               <div 
-                className={`w-full h-1.5 mb-2 transition-opacity duration-300 ${statsConfig.statsTheme === t.id ? 'opacity-100' : 'opacity-20'}`} 
-                style={{ backgroundColor: t.color }}
+                className={`w-full h-1 mb-1 transition-opacity duration-300 rounded-md ${statsConfig.statsTheme === t.id ? 'opacity-100' : 'opacity-20'}`} 
+                style={{ backgroundColor: t.color === '#0000' ? '#444' : t.color }}
               />
-              <span className="text-[8px] font-black uppercase tracking-widest">{t.name.substring(0, 10)}</span>
+              <span className="text-[7px] font-black uppercase tracking-widest">{t.name}</span>
             </button>
           ))}
         </div>

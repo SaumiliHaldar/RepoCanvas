@@ -3,15 +3,15 @@ import { useStore } from '../../store/useStore';
 import { Search } from 'lucide-react';
 
 const SKILLS_DATABASE = {
-  'Languages': ['javascript', 'typescript', 'python', 'java', 'cpp', 'go', 'rust', 'php', 'swift', 'kotlin', 'ruby', 'dart', 'html', 'css', 'sass', 'c', 'cs', 'elixir', 'haskell', 'lua', 'matlab', 'r', 'solidity', 'zig'],
-  'Frontend': ['react', 'vue', 'angular', 'svelte', 'nextjs', 'tailwind', 'bootstrap', 'sass', 'redux', 'materialui', 'jquery', 'styledcomponents', 'vite', 'webpack', 'babel', 'astro', 'remix', 'threejs'],
+  'Languages': ['javascript', 'typescript', 'python', 'java', 'cpp', 'go', 'rust', 'php', 'swift', 'kotlin', 'ruby', 'dart', 'sass', 'c', 'cs', 'elixir', 'haskell', 'lua', 'matlab', 'r', 'solidity', 'zig'],
+  'Frontend': ['html', 'css', 'react', 'vue', 'angular', 'svelte', 'nextjs', 'tailwind', 'bootstrap', 'sass', 'redux', 'materialui', 'jquery', 'styledcomponents', 'vite', 'webpack', 'babel', 'astro', 'remix', 'threejs'],
   'Backend': ['nodejs', 'express', 'django', 'flask', 'spring', 'laravel', 'graphql', 'nestjs', 'fastapi', 'dotnet', 'go', 'ruby', 'php', 'elixir', 'strapi', 'prisma', 'apollo'],
   'Databases': ['mongodb', 'postgres', 'mysql', 'sqlite', 'redis', 'firebase', 'supabase', 'cassandra', 'dynamodb', 'planetscale', 'mariadb', 'oracle'],
   'Mobile': ['reactnative', 'flutter', 'android', 'apple', 'kotlin', 'swift', 'dart', 'ionic', 'capacitor'],
   'AI & ML': ['tensorflow', 'pytorch', 'scikitlearn', 'opencv', 'pandas', 'numpy', 'jupyter', 'anaconda', 'matplotlib'],
   'Cloud & DevOps': ['docker', 'kubernetes', 'aws', 'gcp', 'azure', 'jenkins', 'githubactions', 'terraform', 'nginx', 'vercel', 'netlify', 'digitalocean', 'heroku', 'linux', 'bash', 'ansible', 'prometheus', 'grafana'],
   'Design': ['figma', 'sketch', 'adobephotoshop', 'adobeillustrator', 'aftereffects', 'premiere', 'blender', 'canva'],
-  'Tools': ['git', 'vscode', 'postman', 'notion', 'jest', 'vitest', 'npm', 'yarn', 'pnpm', 'obs', 'discord', 'slack', 'trello', 'jira'],
+  'Tools': ['github', 'git', 'vscode', 'postman', 'notion', 'jest', 'vitest', 'npm', 'yarn', 'pnpm', 'obs', 'discord', 'slack', 'trello', 'jira'],
 };
 
 

@@ -5,6 +5,7 @@ import { generateMarkdown } from './utils/markdownGenerator';
 import ProfileSection from './components/editor/ProfileSection';
 import SocialsSection from './components/editor/SocialsSection';
 import SkillsSection from './components/editor/SkillsSection';
+import ProjectSection from './components/editor/ProjectSection';
 import StatsSection from './components/editor/StatsSection';
 import ExtraSection from './components/editor/ExtraSection';
 import LivePreview from './components/preview/LivePreview';
@@ -50,6 +51,11 @@ function App() {
             <SkillsSection />
           </section>
 
+          <section id="project" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
+            <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: PRJ_WRK</div>
+            <ProjectSection />
+          </section>
+
           <section id="stats" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
             <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: GITHUB_ANA</div>
             <StatsSection />
@@ -62,13 +68,13 @@ function App() {
         </div>
       </div>
 
-      {/* Right Pane: Live Preview Module */}
+      {/* Right Pane: Readme Preview Module */}
       <div className="w-full lg:w-1/2 h-full flex flex-col bg-black/60">
         <div className="h-14 border-b border-white/10 flex items-center px-4 justify-between bg-white/[0.02]">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-500 animate-pulse" />
-              <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-purple-500/80">Live Preview</h2>
+              <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-purple-500/80">Readme Preview</h2>
             </div>
             
             {/* View Toggle */}

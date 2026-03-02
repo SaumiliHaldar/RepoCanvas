@@ -98,24 +98,6 @@ const ProfileSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Email */}
-        <div className="space-y-3 group md:col-span-2">
-          <label className={labelClasses}>
-            <span className="text-cyan-500/40">[05]</span> Email Address
-          </label>
-          <div className="relative">
-            <input
-              type="email"
-              name="email"
-              value={userInfo.email}
-              onChange={handleChange}
-              placeholder="hello@johndoe.dev"
-              className={inputClasses}
-            />
-            <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500 group-focus-within:w-full transition-all duration-500" />
-          </div>
-        </div>
-
         {/* Bio */}
         <div className="space-y-4 group md:col-span-2 pt-4">
           <div className="flex items-center gap-4">

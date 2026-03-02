@@ -88,10 +88,21 @@ const getSocialBadges = (socials: any) => {
       badge: 'https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white',
       urlFn: (v) => `https://twitch.tv/${v}`,
     },
+    stackoverflow: {
+      badge: 'https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white',
+      urlFn: (v) => `https://stackoverflow.com/users/${v}`,
+    },
   };
 
-  const badges = Object.entries(socials)
-    .filter(([_, val]) => val !== '')
+  const activeSocials = Object.entries(socials).filter(([_, val]) => val !== '');
+  
+  // Fallback to a generic GitHub badge if no socials are configured
+  if (activeSocials.length === 0) {
+    const meta = socialMeta['github'];
+    return `<a href="${meta.urlFn('octocat')}" target="_blank"><img src="${meta.badge}" /></a>`;
+  }
+
+  const badges = activeSocials
     .map(([key, val]) => {
       const meta = socialMeta[key];
       if (!meta) return null;
@@ -112,45 +123,61 @@ const getSocialBadges = (socials: any) => {
 // ─── Skill icons ───────────────────────────────────────────────────────────────
 const getSkillIcons = (categories: Record<string, string[]>) => {
   let md = '';
+  let hasSkills = false;
+
   Object.entries(categories).forEach(([category, skills]) => {
     if (skills.length > 0) {
+      hasSkills = true;
       md += `#### ${category}\n`;
-      md += `<img src="https://skillicons.dev/icons?i=${skills.join(',').toLowerCase()}" /><br>\n\n`;
+      md += `<img src="https://skillicons.dev/icons?i=${skills.join(',').toLowerCase()}" />\n<br>\n\n`;
     }
   });
+
+  if (!hasSkills) {
+    // Fallback: Ascending order of popularity (rough estimate), with github included and html/css grouped.
+    md += `#### Frontend\n`;
+    md += `<img src="https://skillicons.dev/icons?i=svelte,vue,react,css,html" />\n<br>\n\n`;
+    md += `#### Backend\n`;
+    md += `<img src="https://skillicons.dev/icons?i=rust,go,python,nodejs" />\n<br>\n\n`;
+    md += `#### Tools\n`;
+    md += `<img src="https://skillicons.dev/icons?i=docker,github,git" />\n<br>\n\n`;
+  }
+
   return md;
 };
 
 // ─── Stats section ─────────────────────────────────────────────────────────────
 const getStatsSection = (username: string, config: any, themes: ReturnType<typeof resolveThemes>) => {
-  if (!username) return '';
+  const displayUsername = username || 'octocat';
   let md = `### 📊 GitHub Stats\n\n<div align="center">\n\n`;
 
   if (config.showSummaryCards) {
-    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${username}&theme=${themes.summary}" width="65%" />\n  <br><br>\n`;
-    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=${username}&theme=${themes.summary}&utcOffset=5" width="65%" />\n  <br><br>\n`;
-    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=${username}&theme=${themes.summary}" width="65%" />\n`;
+    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${displayUsername}&theme=${themes.summary}" width="65%" />\n  <br><br>\n`;
+    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=${displayUsername}&theme=${themes.summary}" width="65%" />\n`;
   } else {
     if (config.showStats) {
-      md += `  <img src="https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=${themes.stats}&hide_border=true" />\n`;
+      md += `  <img src="https://github-readme-stats.vercel.app/api?username=${displayUsername}&show_icons=true&theme=${themes.stats}&hide_border=true" />\n`;
+    }
+    if (config.showStats && config.showLanguages) {
+      md += `  <br><br>\n`;
     }
     if (config.showLanguages) {
-      md += `  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=${themes.stats}&hide_border=true" />\n`;
+      md += `  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${displayUsername}&layout=compact&theme=${themes.stats}&hide_border=true" />\n`;
     }
   }
 
-  md += `\n</div>\n`;
+  md += `\n</div>\n\n<br><br>\n\n`;
 
   if (config.showStreak) {
-    md += `\n<div align="center">\n\n`;
-    md += `  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=${themes.streak}&hide_border=true" alt="GitHub Streak" />\n`;
-    md += `\n</div>\n`;
+    md += `<div align="center">\n\n`;
+    md += `  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${displayUsername}&theme=${themes.streak}&hide_border=true" alt="GitHub Streak" />\n`;
+    md += `\n</div>\n\n<br><br>\n\n`;
   }
 
   if (config.showActivityGraph) {
-    md += `\n<div align="center">\n\n`;
-    md += `  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=${themes.activity}&hide_border=true" width="100%" alt="Activity Graph" />\n`;
-    md += `\n</div>\n`;
+    md += `<div align="center">\n\n`;
+    md += `  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${displayUsername}&theme=${themes.activity}&hide_border=true" width="100%" alt="Activity Graph" />\n`;
+    md += `\n</div>\n\n<br><br>\n\n`;
   }
 
   return md;
@@ -160,10 +187,10 @@ const getStatsSection = (username: string, config: any, themes: ReturnType<typeo
 const getQuoteSection = (config: any, themes: ReturnType<typeof resolveThemes>) => {
   let md = '';
   if (config.showQuote) {
-    md += `\n### ✍️ Random Dev Quote\n\n<div align="center">\n\n  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=${themes.quote}" alt="Dev Quote" />\n\n</div>\n\n`;
+    md += `\n### ✍️ Random Dev Quote\n\n<div align="center">\n\n  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=${themes.quote}" alt="Dev Quote" />\n\n</div>\n<br>\n\n`;
   }
   if (config.showJokes) {
-    md += `\n### 🤣 Random Dev Joke\n\n<div align="center">\n\n  <img src="https://github-readme-joke-api.vercel.app/api?theme=${themes.quote}" alt="Dev Joke" />\n\n</div>\n\n`;
+    md += `\n### 🤣 Random Dev Joke\n\n<div align="center">\n\n  <img src="https://github-readme-joke-api.vercel.app/api?theme=${themes.quote}" alt="Dev Joke" />\n\n</div>\n<br>\n\n`;
   }
   return md;
 };
@@ -171,12 +198,12 @@ const getQuoteSection = (config: any, themes: ReturnType<typeof resolveThemes>) 
 // ─── Banner section ────────────────────────────────────────────────────────────
 const getBannerSection = (bannerUrl: string) => {
   if (!bannerUrl) return '';
-  return `<p align="center">\n  <img src="${bannerUrl}" width="100%" alt="Banner" />\n</p>\n\n`;
+  return `<p align="center">\n  <img src="${bannerUrl}" width="100%" alt="Banner" />\n</p>\n\n<br><br>\n\n`;
 };
 
 // ─── Fun components ────────────────────────────────────────────────────────────
 const getFunComponents = (username: string, config: any) => {
-  if (!username) return '';
+  const displayUsername = username || 'octocat';
   let md = '';
 
   if (config.showBreakout) {
@@ -184,11 +211,12 @@ const getFunComponents = (username: string, config: any) => {
   }
 
   if (config.showSnake) {
-    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake-dark.svg" />\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />\n  <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />\n</picture>\n</div>\n\n`;
+    // using user github action generated snake image or generic default if empty
+    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/${displayUsername}/${displayUsername}/output/github-snake-dark.svg" />\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/${displayUsername}/${displayUsername}/output/github-snake.svg" />\n  <img alt="github-snake" src="https://raw.githubusercontent.com/${displayUsername}/${displayUsername}/output/github-snake.svg" onerror="this.src='https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg'" />\n</picture>\n</div>\n\n`;
   }
 
   if (config.showPacman) {
-    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph-dark.svg">\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">\n  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">\n</picture>\n</div>\n\n`;
+    md += `\n<div align="center">\n<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/${displayUsername}/${displayUsername}/output/pacman-contribution-graph-dark.svg">\n  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/${displayUsername}/${displayUsername}/output/pacman-contribution-graph.svg">\n  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/${displayUsername}/${displayUsername}/output/pacman-contribution-graph.svg" onerror="this.src='https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg'" />\n</picture>\n</div>\n\n`;
   }
 
   return md;
@@ -214,52 +242,75 @@ const generateNexusProTemplate = (
   const textColor = githubTheme === 'dark' ? '#e6edf3' : '#1f2328';
   md += `<h1 align="center" style="color:${textColor};">\n  Hey there! 👋 I'm <span style="color:${nameColor};">${userInfo.name || 'Your Name'}</span>\n</h1>\n`;
   if (userInfo.title) md += `<h3 align="center">\n  🚀 ${userInfo.title}\n</h3>\n\n`;
-
-  if (config.showViews && socials.github) {
-    md += `<p align="center">\n  <img src="https://komarev.com/ghpvc/?username=${socials.github}&label=Profile%20Views&color=blueviolet&style=for-the-badge" alt="Profile Views" />\n</p>\n\n`;
+  else md += `<h3 align="center">\n  🚀 Software Engineer | Open Source Contributor\n</h3>\n\n`;
+  
+  if (userInfo.location || userInfo.company) {
+    const locStr = userInfo.location ? `📍 ${userInfo.location}` : '';
+    const compStr = userInfo.company ? `🏢 ${userInfo.company}` : '';
+    const divider = locStr && compStr ? ' | ' : '';
+    md += `<p align="center">\n  ${locStr}${divider}${compStr}\n</p>\n\n`;
+  } else {
+    md += `<p align="center">\n  📍 Earth | 🏢 Remote\n</p>\n\n`;
   }
 
-  if (config.showTrophies && socials.github) {
-    md += `<p align="center">\n  <img src="https://github-profile-trophy.vercel.app/?username=${socials.github}&theme=${themes.trophy}&no-frame=true&row=1&margin-w=10" alt="GitHub Trophies" />\n</p>\n\n`;
+
+  if (config.showViews) {
+    const displayGithub = socials.github || 'octocat';
+    md += `<p align="center">\n  <img src="https://komarev.com/ghpvc/?username=${displayGithub}&label=Profile%20Views&color=blueviolet&style=for-the-badge" alt="Profile Views" />\n</p>\n\n<br><br>\n\n`;
   }
 
-  md += `---\n\n### 🌟 About Me\n`;
-  if (aboutMe.length > 0) {
-    aboutMe.forEach((line) => {
-      // Ensure specific bolding and icons for consistent look
-      if (line.includes('Python') || line.includes('Django') || line.includes('API')) {
-        md += `- ${line}\n`;
-      } else {
-        md += `- ${line}\n`;
-      }
+  if (config.showTrophies) {
+    const displayGithub = socials.github || 'octocat';
+    md += `<p align="center">\n  <img src="https://github-profile-trophy.vercel.app/?username=${displayGithub}&theme=${themes.trophy}&no-frame=true&row=1&margin-w=10" alt="GitHub Trophies" />\n</p>\n\n<br><br>\n\n`;
+  }
+
+  if (userInfo.bio) {
+    md += `---\n\n### 🌟 About Me\n\n${userInfo.bio}\n\n`;
+  } else if (aboutMe && aboutMe.length > 0) {
+    md += `---\n\n### 🌟 About Me\n`;
+    aboutMe.forEach((line: string) => {
+      md += `- ${line}\n`;
     });
   } else {
-    md += `- 💼 Software Developer specializing in **Python**, **Django**, and **REST APIs**\n`;
+    md += `---\n\n### 🌟 About Me\n\n`;
+    md += `- 💼 Software Developer specializing in **Full Stack Development**\n`;
     md += `- 🔭 Currently working on impactful open-source projects\n`;
     md += `- 🎯 Focused on delivering **clean**, **scalable**, and **maintainable** solutions\n`;
   }
 
   md += `\n---\n\n### 🚀 Tech Stack\n\n<div align="center">\n\n${getSkillIcons(categoricalSkills)}</div>\n\n---\n\n`;
 
+  md += `### 🧩 Featured Project\n`;
   if (featuredProject.title) {
-    md += `### 🧩 Featured Project\n\n#### 🔹 **${featuredProject.title}** – ${featuredProject.description}\n`;
-    if (featuredProject.link)
-      md += `> **🔗 Live Demo:** [${featuredProject.link.replace(/^https?:\/\//, '')}](${featuredProject.link}) \n\n`;
+    md += `🔹 **${featuredProject.title}** – ${featuredProject.description}\n\n`;
     
+    if (featuredProject.link)
+      md += `🔗 **Live Demo:** [${featuredProject.link.replace(/^https?:\/\//, '')}](${featuredProject.link}) \n\n`;
+    
+
     if (featuredProject.features && featuredProject.features.length > 0) {
-      md += `**Key Features:**\n`;
-      featuredProject.features.forEach((feat: string) => (md += `- ${feat}\n`));
+      md += `**Key Features:**\n\n`;
+      featuredProject.features.forEach((feat: string) => {
+        if (feat.trim() !== '') {
+          md += `${feat}\n`;
+        }
+      });
     }
-    md += `\n---\n\n`;
+  } else {
+    md += `🔹 **Awesome Placeholder Project** – An innovative project solving real-world problems.\n\n`;
+    md += `🔗 **Live Demo:** [example.com](https://example.com) \n\n`;
+    md += `**Key Features:**\n\n`;
+    md += `- Scalable architecture\n`;
+    md += `- Beautiful and responsive UI\n`;
+    md += `- Comprehensive test coverage\n`;
   }
+  md += `\n---\n\n`;
 
   md += getStatsSection(socials.github, config, themes);
   md += getQuoteSection(config, themes);
   md += `\n---\n\n### 🌐 Connect with Me\n\n<div align="center">\n  ${getSocialBadges(socials)}\n</div>\n\n`;
 
-  if (funFact) {
-    md += `---\n\n### 🧠 Fun Fact\n> ${funFact}\n`;
-  }
+  md += `---\n\n### 🧠 Fun Fact\n> ${funFact || 'I once wrote a script to automate writing my scripts!'}\n`;
 
   md += getFunComponents(socials.github, config);
 
@@ -267,16 +318,33 @@ const generateNexusProTemplate = (
 };
 
 const generateModernMinimalistTemplate = (userInfo: any, socials: any, _categoricalSkills: any, bannerUrl: string, statsConfig: any, themes: ReturnType<typeof resolveThemes>) => {
-  const skills = Object.values(_categoricalSkills).flat() as string[];
   let md = getBannerSection(bannerUrl);
   md += `<h1 align="center">Hi there, I'm ${userInfo.name || 'a Developer'} 👋</h1>\n`;
-  if (userInfo.title) md += `<p align="center"><b>${userInfo.title}</b></p>\n\n`;
-  if (userInfo.bio) md += `${userInfo.bio}\n\n`;
-  md += `<hr />\n\n`;
-  if (skills.length > 0) {
-    md += `## 🛠️ Tech Stack\n\n`;
-    md += `<img src="https://skillicons.dev/icons?i=${skills.join(',').toLowerCase()}" />\n\n`;
+  if (userInfo.title) md += `<p align="center"><b>${userInfo.title}</b></p>\n`;
+  else md += `<p align="center"><b>Software Engineer</b></p>\n`;
+  
+  if (userInfo.location || userInfo.company) {
+    const locStr = userInfo.location ? `🌍 ${userInfo.location}` : '';
+    const compStr = userInfo.company ? `💼 ${userInfo.company}` : '';
+    const divider = locStr && compStr ? ' | ' : '';
+    md += `<p align="center">${locStr}${divider}${compStr}</p>\n\n`;
+  } else {
+    md += `<p align="center">🌍 Earth | 💼 Remote</p>\n\n`;
   }
+
+  if (userInfo.bio) md += `${userInfo.bio}\n\n`;
+  else md += `Passionate about building cool things for the web.\n\n`;
+  
+  md += `<hr />\n\n`;
+  
+  md += `## 🛠️ Tech Stack\n\n`;
+  const skillsList = Object.values(_categoricalSkills).flat() as string[];
+  if (skillsList.length > 0) {
+    md += `<img src="https://skillicons.dev/icons?i=${skillsList.join(',').toLowerCase()}" />\n\n`;
+  } else {
+    md += `<img src="https://skillicons.dev/icons?i=svelte,vue,react,css,html,rust,go,python,nodejs,docker,github,git" />\n\n`;
+  }
+
   md += getStatsSection(socials.github, statsConfig, themes);
   md += getQuoteSection(statsConfig, themes);
   md += getFunComponents(socials.github, statsConfig);
@@ -284,14 +352,28 @@ const generateModernMinimalistTemplate = (userInfo: any, socials: any, _categori
 };
 
 const generateTechGridTemplate = (userInfo: any, socials: any, _categoricalSkills: any, bannerUrl: string, statsConfig: any, themes: ReturnType<typeof resolveThemes>) => {
-  const skills = Object.values(_categoricalSkills).flat() as string[];
   let md = getBannerSection(bannerUrl);
-  md += `# ${userInfo.name || 'Developer'} | ${userInfo.title || 'Engineer'}\n\n`;
+  md += `# ${userInfo.name || 'Developer'} | ${userInfo.title || 'Software Engineer'}\n\n`;
+  
+  if (userInfo.location || userInfo.company) {
+    const locStr = userInfo.location ? `📍 ${userInfo.location}` : '';
+    const compStr = userInfo.company ? `🏢 ${userInfo.company}` : '';
+    const divider = locStr && compStr ? ' • ' : '';
+    md += `**${locStr}${divider}${compStr}**\n\n`;
+  } else {
+    md += `**📍 Earth • 🏢 Remote**\n\n`;
+  }
+
   md += `> ${userInfo.bio || 'Building things with code.'}\n\n`;
   md += `## 🚀 Projects & Skills\n\n`;
-  if (skills.length > 0) {
-    md += `<img src="https://skillicons.dev/icons?i=${skills.join(',').toLowerCase()}" />\n\n`;
+  
+  const skillsList = Object.values(_categoricalSkills).flat() as string[];
+  if (skillsList.length > 0) {
+    md += `<img src="https://skillicons.dev/icons?i=${skillsList.join(',').toLowerCase()}" />\n\n`;
+  } else {
+    md += `<img src="https://skillicons.dev/icons?i=svelte,vue,react,css,html,rust,go,python,nodejs,docker,github,git" />\n\n`;
   }
+
   md += getStatsSection(socials.github, statsConfig, themes);
   md += getQuoteSection(statsConfig, themes);
   md += getFunComponents(socials.github, statsConfig);
@@ -301,6 +383,29 @@ const generateTechGridTemplate = (userInfo: any, socials: any, _categoricalSkill
 const generateStatsProTemplate = (userInfo: any, socials: any, _categoricalSkills: any, bannerUrl: string, statsConfig: any, themes: ReturnType<typeof resolveThemes>) => {
   let md = getBannerSection(bannerUrl);
   md += `# ${userInfo.name || 'Developer'}'s GitHub Universe 🌌\n\n`;
+  if (userInfo.title) md += `### ${userInfo.title}\n\n`;
+  else md += `### Software Engineer\n\n`;
+  
+  if (userInfo.location || userInfo.company) {
+    const locStr = userInfo.location ? `📍 ${userInfo.location}` : '';
+    const compStr = userInfo.company ? `🏢 ${userInfo.company}` : '';
+    const divider = locStr && compStr ? ' • ' : '';
+    md += `<p>${locStr}${divider}${compStr}</p>\n\n`;
+  } else {
+    md += `<p>📍 Earth • 🏢 Remote</p>\n\n`;
+  }
+  
+  if (userInfo.bio) md += `> ${userInfo.bio}\n\n`;
+  else md += `> Transforming coffee into code.\n\n`;
+  
+  md += `## 🚀 Tech Stack\n\n`;
+  const skillsList = Object.values(_categoricalSkills).flat() as string[];
+  if (skillsList.length > 0) {
+    md += `<img src="https://skillicons.dev/icons?i=${skillsList.join(',').toLowerCase()}" />\n\n`;
+  } else {
+    md += `<img src="https://skillicons.dev/icons?i=svelte,vue,react,css,html,rust,go,python,nodejs,docker,github,git" />\n\n`;
+  }
+
   md += getStatsSection(socials.github, statsConfig, themes);
   md += getQuoteSection(statsConfig, themes);
   md += getFunComponents(socials.github, statsConfig);

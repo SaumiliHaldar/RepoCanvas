@@ -8,13 +8,14 @@ export const useStore = create<AppState>((set) => ({
     bio: '',
     location: '',
     company: '',
-    email: '',
   },
   socials: {
     github: '',
     linkedin: '',
     twitter: '',
     website: '',
+    email: '',
+    stackoverflow: '',
     devto: '',
     instagram: '',
     youtube: '',
@@ -39,7 +40,7 @@ export const useStore = create<AppState>((set) => ({
     title: '',
     description: '',
     link: '',
-    features: [],
+    features: []
   },
   funFact: '',
   statsConfig: {
