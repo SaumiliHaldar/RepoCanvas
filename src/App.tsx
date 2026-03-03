@@ -61,7 +61,7 @@ function App() {
           }`}
         >
           <div className={`w-1.5 h-1.5 rounded-full ${mobilePane === 'edit' ? 'bg-cyan-500 shadow-[0_0_6px_rgba(0,242,255,0.8)]' : 'bg-gray-700'} transition-all`} />
-          Build your README
+          Edit README
         </button>
 
         {/* Preview Tab */}
@@ -74,7 +74,7 @@ function App() {
           }`}
         >
           <div className={`w-1.5 h-1.5 rounded-full ${mobilePane === 'preview' ? 'bg-purple-500 shadow-[0_0_6px_rgba(168,85,247,0.8)]' : 'bg-gray-700'} transition-all`} />
-          Readme Preview
+          Preview Readme 
         </button>
       </div>
 
