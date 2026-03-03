@@ -33,7 +33,7 @@ const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
       <div className={`flex flex-col items-center justify-center h-full min-h-[600px] text-center space-y-4 ${isDark ? 'text-[#7d8590]' : 'text-[#636c76]'}`}>
         <Info className={`w-16 h-16 opacity-50 mb-4 ${isDark ? 'text-[#7d8590]' : 'text-[#636c76]'}`} />
         <h3 className={`text-xl font-semibold ${isDark ? 'text-[#e6edf3]' : 'text-[#1f2328]'}`}>Ready to build your README?</h3>
-        <p className="text-sm max-w-md">
+        <p className="text-base max-w-md">
           Fill in the details on the left side to view your live preview here. Your generated markdown will appear instantly.
         </p>
       </div>
@@ -69,12 +69,12 @@ const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
             </ReactMarkdown>
           </div>
         ) : (
-          <div className="flex flex-col h-full bg-[#0d1117]">
-            <div className="flex items-center gap-2 px-6 py-4 bg-[#161b22] border-b border-[#30363d]">
-              <Terminal className="w-4 h-4 text-[#7d8590]" />
-              <span className="text-xs font-mono text-[#7d8590] uppercase tracking-widest font-bold">README.md</span>
+          <div className={`flex flex-col h-full ${isDark ? 'bg-[#0d1117]' : 'bg-white'}`}>
+            <div className={`flex items-center gap-2 px-6 py-4 border-b ${isDark ? 'bg-[#161b22] border-[#30363d]' : 'bg-white border-[#d0d7de]'}`}>
+              <Terminal className={`w-4 h-4 ${isDark ? 'text-[#7d8590]' : 'text-[#636c76]'}`} />
+              <span className={`text-[11px] font-mono uppercase tracking-widest font-bold ${isDark ? 'text-[#7d8590]' : 'text-[#636c76]'}`}>README.md</span>
             </div>
-            <pre className="p-8 text-sm font-mono text-[#e6edf3] overflow-x-auto leading-relaxed whitespace-pre-wrap selection:bg-[#388bfd]/30 flex-1">
+            <pre className={`p-8 text-sm font-mono overflow-x-auto leading-relaxed whitespace-pre-wrap selection:bg-[#388bfd]/30 flex-1 ${isDark ? 'text-[#e6edf3]' : 'text-[#1f2328]'}`}>
               {markdown}
             </pre>
           </div>
@@ -93,10 +93,10 @@ const LivePreview: React.FC<LivePreviewProps> = ({ viewMode }) => {
           <ExternalLink className={`w-4 h-4 ${isDark ? 'text-[#58a6ff]' : 'text-[#0969da]'}`} />
         </div>
         <div>
-          <h4 className={`text-sm font-semibold mb-1 ${isDark ? 'text-[#e6edf3]' : 'text-[#1f2328]'}`}>
+          <h4 className={`text-base font-semibold mb-1 ${isDark ? 'text-[#e6edf3]' : 'text-[#1f2328]'}`}>
             How to use this?
           </h4>
-          <p className={`text-xs leading-relaxed ${isDark ? 'text-[#8b949e]' : 'text-[#636c76]'}`}>
+          <p className={`text-[11px] leading-relaxed ${isDark ? 'text-[#8b949e]' : 'text-[#636c76]'}`}>
             Copy the markdown code, go to your GitHub profile repository (e.g. <b>username/username</b>), and paste it into the <b>README.md</b> file. Your profile will be instantly updated!
           </p>
         </div>

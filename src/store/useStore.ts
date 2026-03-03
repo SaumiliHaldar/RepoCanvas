@@ -31,10 +31,7 @@ export const useStore = create<AppState>((set) => ({
     'Backend': [],
     'Languages': [],
     'Databases': [],
-    'DevOps & Cloud': [],
-    'Data Science & AI': [],
-    'Mobile': [],
-    'Tools & IDEs': [],
+    'Tools & DevOps': [],
   },
   featuredProject: {
     title: '',

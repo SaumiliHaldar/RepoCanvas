@@ -7,21 +7,21 @@ const ExtraSection: React.FC = () => {
 
 
   const inputClasses = "w-full bg-[#0a0a0a] border border-white/10 rounded-none px-4 py-3 text-xs text-gray-300 focus:outline-none focus:border-cyan-500/50 transition-all font-mono placeholder:text-gray-700";
-  const labelClasses = "flex items-center gap-2 text-[9px] font-black text-gray-500 mb-2 ml-1 uppercase tracking-[0.2em] font-mono";
+  const labelClasses = "flex items-center gap-2 text-[11px] font-black text-gray-500 mb-2 ml-1 uppercase tracking-[0.2em] font-mono";
 
   return (
-    <div className="space-y-10 animate-in fade-in duration-1000">
+    <div className="space-y-8 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
           <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Customizations</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Additional profile features</p>
+          <p className="text-[10px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Additional profile features</p>
         </div>
         <div className="p-3 tech-border bg-white/2 text-gray-500">
           <Sparkles className="w-5 h-5" />
         </div>
       </div>
 
-      <div className="space-y-10">
+      <div className="space-y-8">
         {/* Banner URL */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
@@ -40,7 +40,7 @@ const ExtraSection: React.FC = () => {
             />
           </div>
           <div className="flex items-center gap-2 px-1">
-            <p className="text-[8px] text-gray-600 font-bold uppercase tracking-widest opacity-60 font-mono">Status: Asset Linked</p>
+            <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest opacity-60 font-mono">Status: Asset Linked</p>
           </div>
         </div>
 
@@ -88,8 +88,8 @@ const ExtraSection: React.FC = () => {
                       <game.icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="text-[10px] font-black text-white uppercase tracking-widest">{game.name}</h3>
-                      <p className="text-[8px] text-gray-600 font-bold uppercase tracking-widest">{game.desc}</p>
+                      <h3 className="text-[12px] font-black text-white uppercase tracking-widest">{game.name}</h3>
+                      <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">{game.desc}</p>
                     </div>
                   </div>
                   
@@ -107,7 +107,7 @@ const ExtraSection: React.FC = () => {
                         });
                       }
                     }}
-                    className={`w-full sm:w-auto px-6 h-10 tech-border text-[9px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${
+                    className={`w-full sm:w-auto px-6 h-10 tech-border text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${
                       active
                         ? 'bg-cyan-500 text-[#020202] border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.4)]'
                         : 'bg-white/5 text-gray-500 border-white/10 hover:bg-white/10 hover:text-gray-300'

@@ -82,16 +82,16 @@ const SocialsSection: React.FC = () => {
   const inputClasses =
     "w-full bg-[#0a0a0a] border border-white/10 rounded-none px-4 py-3 text-xs text-gray-300 focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-gray-700 font-mono";
   const labelClasses =
-    "flex items-center gap-2 text-[9px] font-black text-gray-500 mb-2 ml-1 uppercase tracking-[0.2em] font-mono";
+    "flex items-center gap-2 text-[13.5px] font-black text-gray-500 mb-2 ml-1 uppercase tracking-[0.2em] font-mono";
 
   return (
-    <div className="space-y-10 animate-in fade-in duration-1000">
+    <div className="space-y-8 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
           <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">
             Social Profiles
           </h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">
+          <p className="text-[12.5px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">
             Links to your social presence
           </p>
         </div>
@@ -100,7 +100,7 @@ const SocialsSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
         {socialFields.map((field) => {
           const Icon = field.icon;
           return (

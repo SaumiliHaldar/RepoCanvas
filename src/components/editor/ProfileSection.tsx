@@ -11,21 +11,21 @@ const ProfileSection: React.FC = () => {
   };
 
   const inputClasses = "w-full bg-[#0a0a0a] border border-white/10 rounded-none px-4 py-3 text-xs text-gray-300 focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-gray-700 font-mono";
-  const labelClasses = "flex items-center gap-2 text-[9px] font-black text-gray-500 mb-2 ml-1 uppercase tracking-[0.2em] font-mono";
+  const labelClasses = "flex items-center gap-2 text-[11px] font-black text-gray-500 mb-2 ml-1 uppercase tracking-[0.2em] font-mono";
 
   return (
-    <div className="space-y-10 animate-in fade-in duration-1000">
+    <div className="space-y-8 animate-in fade-in duration-1000">
       <div className="flex items-center justify-between border-b border-white/10 pb-6 relative">
         <div>
           <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Profile Details</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Your basic information</p>
+          <p className="text-[10px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Your basic information</p>
         </div>
         <div className="p-3 tech-border bg-white/[0.02] text-gray-500">
           <User className="w-5 h-5" />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
         {/* Name */}
         <div className="space-y-3 group">
           <label className={labelClasses}>
@@ -101,7 +101,7 @@ const ProfileSection: React.FC = () => {
         {/* Bio */}
         <div className="space-y-4 group md:col-span-2 pt-4">
           <div className="flex items-center gap-4">
-            <label className="text-[9px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono whitespace-nowrap">
+            <label className="text-[11px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono whitespace-nowrap">
               <span className="text-cyan-500/40">[05]</span> About Me
             </label>
             <div className="h-[1px] flex-1 bg-white/10" />

@@ -20,6 +20,15 @@ function App() {
   const [mobilePane, setMobilePane] = useState<'edit' | 'preview'>('edit');
   const [toast, setToast] = useState<{ msg: string; type: 'error' | 'success' } | null>(null);
 
+  const isPreviewEmpty =
+    !Object.values(state.userInfo).some(v => v.trim() !== '') &&
+    !Object.values(state.socials).some(v => v.trim() !== '') &&
+    !state.aboutMe.some(v => v.trim() !== '') &&
+    !Object.values(state.categoricalSkills).some(skills => skills.length > 0) &&
+    !(state.featuredProject.title.trim() !== '' || state.featuredProject.description.trim() !== '' || state.featuredProject.link.trim() !== '' || state.featuredProject.features.some(f => f.trim() !== '')) &&
+    !state.funFact.trim() &&
+    !state.bannerUrl.trim();
+
   const showToast = (msg: string, type: 'error' | 'success' = 'error') => {
     setToast({ msg, type });
     setTimeout(() => setToast(null), 3000);
@@ -45,7 +54,7 @@ function App() {
         {/* Editor Tab */}
         <button
           onClick={() => setMobilePane('edit')}
-          className={`flex-1 h-12 flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] border-r border-white/10 transition-all ${
+          className={`flex-1 h-12 flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-[0.3em] border-r border-white/10 transition-all ${
             mobilePane === 'edit'
               ? 'text-cyan-400 bg-cyan-500/8 border-b-2 border-b-cyan-400'
               : 'text-gray-600 hover:text-gray-400 bg-transparent'
@@ -58,7 +67,7 @@ function App() {
         {/* Preview Tab */}
         <button
           onClick={() => setMobilePane('preview')}
-          className={`flex-1 h-12 flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] transition-all ${
+          className={`flex-1 h-12 flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-[0.3em] transition-all ${
             mobilePane === 'preview'
               ? 'text-purple-400 bg-purple-500/8 border-b-2 border-b-purple-400'
               : 'text-gray-600 hover:text-gray-400 bg-transparent'
@@ -79,38 +88,38 @@ function App() {
           <div className="hidden lg:flex h-14 border-b border-white/10 items-center px-4 bg-white/[0.02]">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-cyan-500 animate-pulse" />
-              <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-cyan-500/80">Build your README</h2>
+              <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-cyan-500/80">Build your README</h2>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-10 pb-10">
-            <section id="profile" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
-              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: PRF_ESS</div>
+          <div className="flex-1 overflow-y-auto custom-scrollbar p-5 space-y-6 pb-10">
+            <section id="profile" className="scroll-mt-6 tech-border p-5 bg-white/[0.01]">
+              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: PRF_ESS</div>
               <ProfileSection />
             </section>
 
-            <section id="socials" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
-              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: SOC_PRZ</div>
+            <section id="socials" className="scroll-mt-6 tech-border p-5 bg-white/[0.01]">
+              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: SOC_PRZ</div>
               <SocialsSection />
             </section>
 
-            <section id="skills" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
-              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: TCH_STK</div>
+            <section id="skills" className="scroll-mt-6 tech-border p-5 bg-white/[0.01]">
+              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: TCH_STK</div>
               <SkillsSection />
             </section>
 
-            <section id="project" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
-              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: PRJ_WRK</div>
+            <section id="project" className="scroll-mt-6 tech-border p-5 bg-white/[0.01]">
+              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: PRJ_WRK</div>
               <ProjectSection />
             </section>
 
-            <section id="stats" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
-              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: GITHUB_ANA</div>
+            <section id="stats" className="scroll-mt-6 tech-border p-5 bg-white/[0.01]">
+              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: GITHUB_ANA</div>
               <StatsSection />
             </section>
 
-            <section id="extra" className="scroll-mt-6 tech-border p-6 bg-white/[0.01]">
-              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[8px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: SYS_XTRA</div>
+            <section id="extra" className="scroll-mt-6 tech-border p-5 bg-white/[0.01]">
+              <div className="absolute -top-3 left-4 px-2 bg-[#020202] text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/10">ID: SYS_XTRA</div>
               <ExtraSection />
             </section>
           </div>
@@ -123,27 +132,27 @@ function App() {
           <div className="hidden lg:flex h-14 border-b border-white/10 items-center px-4 justify-between bg-white/[0.02]">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-500 animate-pulse" />
-              <h2 className="text-[9px] font-black uppercase tracking-[0.4em] text-purple-500/80">Readme Preview</h2>
+              <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-purple-500/80">Readme Preview</h2>
             </div>
             {/* Desktop action row */}
             <div className="flex items-center gap-2">
               <div className="flex bg-black/40 border border-white/10 rounded-lg p-1 gap-1">
                 <button
                   onClick={() => setViewMode('visual')}
-                  className={`flex items-center gap-2 px-3 py-1 text-[9px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'visual' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
+                  className={`flex items-center gap-2 px-3 py-1 text-[11px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'visual' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
                 >
                   <Eye className="w-3 h-3" />Visual
                 </button>
                 <button
                   onClick={() => setViewMode('code')}
-                  className={`flex items-center gap-2 px-3 py-1 text-[9px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'code' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
+                  className={`flex items-center gap-2 px-3 py-1 text-[11px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'code' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
                 >
                   <Code className="w-3 h-3" />Code
                 </button>
               </div>
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-600/20 active:scale-95"
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[12px] font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-600/20 active:scale-95"
               >
                 {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 {copied ? 'Copied!' : 'Copy README'}
@@ -152,7 +161,7 @@ function App() {
           </div>
 
           {/* Preview content */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-8 bg-[#020202]">
+          <div className={`flex-1 ${isPreviewEmpty ? 'overflow-y-hidden' : 'overflow-y-auto custom-scrollbar'} p-4 sm:p-8 ${state.githubTheme === 'dark' ? 'bg-[#020202]' : 'bg-white'}`}>
             <LivePreview viewMode={viewMode} />
           </div>
 
@@ -165,7 +174,7 @@ function App() {
                 <button
                   onClick={() => setViewMode('visual')}
                   title="Visual"
-                  className={`flex flex-col items-center justify-center gap-1 w-12 h-12 text-[7px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'visual' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
+                  className={`flex flex-col items-center justify-center gap-1 w-12 h-12 text-[9px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'visual' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
                 >
                   <Eye className="w-3.5 h-3.5" />
                   Visual
@@ -173,7 +182,7 @@ function App() {
                 <button
                   onClick={() => setViewMode('code')}
                   title="Code"
-                  className={`flex flex-col items-center justify-center gap-1 w-12 h-12 text-[7px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'code' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
+                  className={`flex flex-col items-center justify-center gap-1 w-12 h-12 text-[9px] font-black uppercase tracking-widest transition-all rounded ${viewMode === 'code' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'}`}
                 >
                   <Code className="w-3.5 h-3.5" />
                   Code
@@ -185,7 +194,7 @@ function App() {
               <button
                 onClick={handleCopy}
                 title="Copy README"
-                className="flex flex-col items-center justify-center gap-1 w-12 h-12 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[7px] font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-600/30 active:scale-95 backdrop-blur-md"
+                className="flex flex-col items-center justify-center gap-1 w-12 h-12 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-600/30 active:scale-95 backdrop-blur-md"
               >
                 {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                 {copied ? 'Done' : 'Copy'}

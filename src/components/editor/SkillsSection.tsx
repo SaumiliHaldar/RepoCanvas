@@ -4,14 +4,10 @@ import { Search } from 'lucide-react';
 
 const SKILLS_DATABASE = {
   'Languages': ['javascript', 'typescript', 'python', 'java', 'cpp', 'go', 'rust', 'php', 'swift', 'kotlin', 'ruby', 'dart', 'sass', 'c', 'cs', 'elixir', 'haskell', 'lua', 'matlab', 'r', 'solidity', 'zig'],
-  'Frontend': ['html', 'css', 'react', 'vue', 'angular', 'svelte', 'nextjs', 'tailwind', 'bootstrap', 'sass', 'redux', 'materialui', 'jquery', 'styledcomponents', 'vite', 'webpack', 'babel', 'astro', 'remix', 'threejs'],
-  'Backend': ['nodejs', 'express', 'django', 'flask', 'spring', 'laravel', 'graphql', 'nestjs', 'fastapi', 'dotnet', 'go', 'ruby', 'php', 'elixir', 'strapi', 'prisma', 'apollo'],
+  'Frontend': ['html', 'css', 'react', 'vue', 'angular', 'svelte', 'nextjs', 'tailwind', 'bootstrap', 'sass', 'redux', 'materialui', 'jquery', 'styledcomponents', 'vite', 'webpack', 'babel', 'astro', 'remix', 'threejs', 'figma', 'sketch', 'adobephotoshop', 'adobeillustrator', 'aftereffects', 'premiere', 'blender', 'canva', 'reactnative', 'flutter', 'android', 'apple', 'kotlin', 'swift', 'dart', 'ionic', 'capacitor'],
+  'Backend': ['nodejs', 'express', 'django', 'flask', 'spring', 'laravel', 'graphql', 'nestjs', 'fastapi', 'dotnet', 'go', 'ruby', 'php', 'elixir', 'strapi', 'prisma', 'apollo', 'tensorflow', 'pytorch', 'scikitlearn', 'opencv', 'pandas', 'numpy', 'jupyter', 'anaconda', 'matplotlib'],
   'Databases': ['mongodb', 'postgres', 'mysql', 'sqlite', 'redis', 'firebase', 'supabase', 'cassandra', 'dynamodb', 'planetscale', 'mariadb', 'oracle'],
-  'Mobile': ['reactnative', 'flutter', 'android', 'apple', 'kotlin', 'swift', 'dart', 'ionic', 'capacitor'],
-  'AI & ML': ['tensorflow', 'pytorch', 'scikitlearn', 'opencv', 'pandas', 'numpy', 'jupyter', 'anaconda', 'matplotlib'],
-  'Cloud & DevOps': ['docker', 'kubernetes', 'aws', 'gcp', 'azure', 'jenkins', 'githubactions', 'terraform', 'nginx', 'render', 'vercel', 'netlify', 'digitalocean', 'heroku', 'linux', 'bash', 'ansible', 'prometheus', 'grafana'],
-  'Design': ['figma', 'sketch', 'adobephotoshop', 'adobeillustrator', 'aftereffects', 'premiere', 'blender', 'canva'],
-  'Tools': ['github', 'git', 'vscode', 'postman', 'notion', 'jest', 'vitest', 'npm', 'yarn', 'pnpm', 'obs', 'discord', 'slack', 'trello', 'jira'],
+  'Tools & DevOps': ['github', 'git', 'vscode', 'postman', 'notion', 'jest', 'vitest', 'npm', 'yarn', 'pnpm', 'obs', 'discord', 'slack', 'trello', 'jira', 'docker', 'kubernetes', 'aws', 'gcp', 'azure', 'jenkins', 'githubactions', 'terraform', 'nginx', 'render', 'vercel', 'netlify', 'digitalocean', 'heroku', 'linux', 'bash', 'ansible', 'prometheus', 'grafana'],
 };
 
 
@@ -36,11 +32,11 @@ const SkillsSection: React.FC = () => {
   };
 
   return (
-    <div className="space-y-10 animate-in fade-in duration-1000">
+    <div className="space-y-8 animate-in fade-in duration-1000">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 relative">
         <div>
           <h3 className="text-lg font-black text-white tracking-[0.2em] uppercase">Technologies</h3>
-          <p className="text-[8px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Select your technical skills</p>
+          <p className="text-[10px] text-cyan-500/50 uppercase tracking-[0.4em] font-bold">Select your technical skills</p>
         </div>
         
         <div className="relative group w-full md:w-72">
@@ -67,7 +63,7 @@ const SkillsSection: React.FC = () => {
             <div key={category} className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-1.5 h-1.5 bg-gray-800" />
-                <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono">
+                <h3 className="text-[12px] font-black text-gray-500 uppercase tracking-[0.4em] font-mono">
                   {category} <span className="text-gray-700 ml-2">// COUNT: {filteredSkills.length}</span>
                 </h3>
                 <div className="h-px flex-1 bg-white/5" />
@@ -80,7 +76,7 @@ const SkillsSection: React.FC = () => {
                     <button
                       key={skill}
                       onClick={() => toggleSkill(category, skill)}
-                      className={`relative px-4 py-2.5 flex items-center gap-3 transition-all duration-300 border font-mono text-[10px] uppercase tracking-wider ${
+                      className={`relative px-4 py-2.5 flex items-center gap-3 transition-all duration-300 border font-mono text-[12px] uppercase tracking-wider ${
                         active
                           ? 'bg-cyan-500/10 border-cyan-500/50 text-white shadow-[0_0_20px_rgba(6,182,212,0.15)]' 
                           : 'bg-white/2 border-white/5 text-gray-500 hover:border-white/20 hover:text-gray-300'
@@ -106,7 +102,7 @@ const SkillsSection: React.FC = () => {
       </div>
 
       {searchTerm && (
-        <div className="text-center py-8 text-gray-600 font-mono text-[9px] uppercase tracking-widest opacity-40">
+        <div className="text-center py-8 text-gray-600 font-mono text-[11px] uppercase tracking-widest opacity-40">
           STK_SCAN_INCOMPLETE // MORE_IDENTS_AVAILABLE
         </div>
       )}

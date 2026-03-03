@@ -54,7 +54,6 @@ export const generateMarkdown = (state: AppState): string => {
         bannerUrl,
         statsConfig,
         themes,
-        githubTheme,
       );
     case "tech-grid":
       return generateTechGridTemplate(
@@ -100,7 +99,7 @@ const getSocialBadges = (socials: any) => {
     },
     linkedin: {
       badge:
-        "https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white",
+        "https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white",
       urlFn: (v) => v,
     },
     twitter: {
@@ -120,7 +119,7 @@ const getSocialBadges = (socials: any) => {
     },
     email: {
       badge:
-        "https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white",
+        "https://img.shields.io/badge/Email-D14836.svg?&style=for-the-badge&logo=gmail&logoColor=white",
       urlFn: (v) => `mailto:${v}`,
     },
     instagram: {
@@ -140,7 +139,7 @@ const getSocialBadges = (socials: any) => {
     },
     hashnode: {
       badge:
-        "https://img.shields.io/badge/Hashnode-2962FF?style=for-the-badge&logo=hashnode&logoColor=white",
+        "https://img.shields.io/badge/Hashnode-%232962FF.svg?&style=for-the-badge&logo=hashnode&logoColor=white",
       urlFn: (v) => `https://hashnode.com/@${v}`,
     },
     discord: {
@@ -178,18 +177,11 @@ const getSocialBadges = (socials: any) => {
     .map(([key, val]) => {
       const meta = socialMeta[key];
       if (!meta) return null;
-      return `<a href="${meta.urlFn(val as string)}" target="_blank"><img src="${meta.badge}" /></a>`;
+      return `<a href="${meta.urlFn(val as string)}" target="_blank">\n    <img src="${meta.badge}" />\n  </a>`;
     })
     .filter(Boolean) as string[];
 
-  let result = "";
-  for (let i = 0; i < badges.length; i++) {
-    result += badges[i] + " ";
-    if ((i + 1) % 4 === 0 && i !== badges.length - 1) {
-      result += "<br>\n  ";
-    }
-  }
-  return result.trim();
+  return badges.join("\n  ");
 };
 
 // ─── Skill icons ───────────────────────────────────────────────────────────────
@@ -223,32 +215,37 @@ const getStatsSection = (
   let md = `### 📊 GitHub Stats\n\n<div align="center">\n\n`;
 
   if (config.showSummaryCards) {
-    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${displayUsername}&theme=${themes.summary}" width="65%" />\n  <br><br>\n`;
-    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=${displayUsername}&theme=${themes.summary}" width="65%" />\n`;
+    md += `  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${displayUsername}&theme=${themes.summary}" width="50%" />
+  <br><br>
+  
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=${displayUsername}&theme=${themes.summary}&utcOffset=5" width="50%" />
+  <br><br>
+  
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=${displayUsername}&theme=${themes.summary}" width="50%" />\n`;
   } else {
     if (config.showStats) {
-      md += `  <img src="https://github-readme-stats.vercel.app/api?username=${displayUsername}&show_icons=true&theme=${themes.stats}&hide_border=true" />\n`;
+      md += `  <img src="https://github-readme-stats.vercel.app/api?username=${displayUsername}&show_icons=true&theme=${themes.stats}&hide_border=true" width="50%" />\n`;
     }
     if (config.showStats && config.showLanguages) {
-      md += `  <br><br>\n`;
+      md += `\n`;
     }
     if (config.showLanguages) {
-      md += `  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${displayUsername}&layout=compact&theme=${themes.stats}&hide_border=true" />\n`;
+      md += `  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${displayUsername}&layout=compact&theme=${themes.stats}&hide_border=true" width="50%" />\n`;
     }
   }
 
-  md += `\n</div>\n\n<br><br>\n\n`;
+  md += `\n</div>\n\n`;
 
   if (config.showStreak) {
     md += `<div align="center">\n\n`;
-    md += `  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${displayUsername}&theme=${themes.streak}&hide_border=true" alt="GitHub Streak" />\n`;
-    md += `\n</div>\n\n<br><br>\n\n`;
+    md += `  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${displayUsername}&theme=${themes.streak}&hide_border=true" width="50%" alt="GitHub Streak" />\n`;
+    md += `\n</div>\n\n`;
   }
 
   if (config.showActivityGraph) {
     md += `<div align="center">\n\n`;
-    md += `  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${displayUsername}&theme=${themes.activity}&hide_border=true" width="100%" alt="Activity Graph" />\n`;
-    md += `\n</div>\n\n<br><br>\n\n`;
+    md += `  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${displayUsername}&theme=${themes.activity}&hide_border=true" width="80%" alt="Activity Graph" />\n`;
+    md += `\n</div>\n\n`;
   }
 
   return md;
@@ -272,7 +269,7 @@ const getQuoteSection = (
 // ─── Banner section ────────────────────────────────────────────────────────────
 const getBannerSection = (bannerUrl: string) => {
   if (!bannerUrl) return "";
-  return `<p align="center">\n  <img src="${bannerUrl}" width="100%" alt="Banner" />\n</p>\n\n<br><br>\n\n`;
+  return `<p align="center">\n  <img src="${bannerUrl}" width="100%" alt="Banner" />\n</p>\n\n---\n\n`;
 };
 
 // ─── Fun components ────────────────────────────────────────────────────────────
@@ -312,13 +309,10 @@ const generateNexusProTemplate = (
   bannerUrl: string,
   config: any,
   themes: ReturnType<typeof resolveThemes>,
-  githubTheme: "dark" | "light",
 ) => {
   let md = getBannerSection(bannerUrl);
-  const nameColor = githubTheme === "dark" ? "#58a6ff" : "#0969da";
-  const textColor = githubTheme === "dark" ? "#e6edf3" : "#1f2328";
   if (userInfo.name) {
-    md += `<h1 align="center" style="color:${textColor};">\n  Hey there! 👋 I'm <span style="color:${nameColor};">${userInfo.name}</span>\n</h1>\n`;
+    md += `<h1 align="center">\n  Hey there! 👋 I'm <span style="color:#007acc;">${userInfo.name}</span>\n</h1>\n`;
   }
   if (userInfo.title) {
     md += `<h3 align="center">\n  🚀 ${userInfo.title}\n</h3>\n\n`;
@@ -333,16 +327,16 @@ const generateNexusProTemplate = (
 
   if (config.showViews && socials.github) {
     const displayGithub = socials.github;
-    md += `<p align="center">\n  <img src="https://komarev.com/ghpvc/?username=${displayGithub}&label=Profile%20Views&color=blueviolet&style=for-the-badge" alt="Profile Views" />\n</p>\n\n<br><br>\n\n`;
+    md += `<p align="center">\n  <img src="https://komarev.com/ghpvc/?username=${displayGithub}&label=Profile%20Views&color=blueviolet&style=for-the-badge" alt="Profile Views" />\n</p>\n\n`;
   }
 
   if (config.showTrophies && socials.github) {
     const displayGithub = socials.github;
-    md += `<p align="center">\n  <img src="https://github-profile-trophy.vercel.app/?username=${displayGithub}&theme=${themes.trophy}&no-frame=true&row=1&margin-w=10" alt="GitHub Trophies" />\n</p>\n\n<br><br>\n\n`;
+    md += `<p align="center">\n  <img src="https://github-profile-trophy.vercel.app/?username=${displayGithub}&theme=${themes.trophy}&no-frame=true&row=1&margin-w=10" alt="GitHub Trophies" />\n</p>\n\n`;
   }
 
   if (userInfo.bio) {
-    md += `---\n\n### 🌟 About Me\n\n${userInfo.bio}\n\n`;
+    md += `---\n\n### 🌟 About Me\n\n${userInfo.bio.split('\n').join('  \n')}\n\n`;
   } else if (aboutMe && aboutMe.length > 0) {
     md += `---\n\n### 🌟 About Me\n`;
     aboutMe.forEach((line: string) => {
@@ -357,29 +351,36 @@ const generateNexusProTemplate = (
   }
 
   if (featuredProject.title) {
-    md += `### 🧩 Featured Project\n`;
-    md += `🔹 **${featuredProject.title}** – ${featuredProject.description}\n\n`;
+    md += `### 🧩 Featured Project\n\n`;
+    md += `#### 🔹 **${featuredProject.title}** – ${featuredProject.description}\n\n`;
 
     if (featuredProject.link)
-      md += `🔗 **Live Demo:** [${featuredProject.link.replace(/^https?:\/\//, "")}](${featuredProject.link}) \n\n`;
+      md += `> **🔗 Live Demo:** [${featuredProject.link.replace(/^https?:\/\//, "")}](${featuredProject.link}) \n\n`;
 
     if (featuredProject.features && featuredProject.features.length > 0) {
-      md += `**Key Features:**\n\n`;
+      md += `**Key Features:**\n`;
       featuredProject.features.forEach((feat: string) => {
         if (feat.trim() !== "") {
-          md += `${feat}\n`;
+          md += `- ${feat}\n`;
         }
       });
     }
+
+    if (featuredProject.link) {
+      md += `\n<div align="center">\n  <a href="${featuredProject.link}" target="_blank"></a>\n</div>\n`;
+    }
+    
     md += `\n---\n\n`;
   }
 
   md += getStatsSection(socials.github, config, themes);
+  md += `\n---\n\n`;
   md += getQuoteSection(config, themes);
   
   const socialBadges = getSocialBadges(socials);
   if (socialBadges) {
-    md += `\n---\n\n### 🌐 Connect with Me\n\n<div align="center">\n  ${socialBadges}\n</div>\n\n`;
+    if (!md.endsWith("---\n\n")) md += `---\n\n`;
+    md += `### 🌐 Connect with Me\n\n<div align="center">\n  ${socialBadges}\n</div>\n\n---\n\n`;
   }
 
   if (funFact) {
@@ -415,7 +416,7 @@ const generateModernMinimalistTemplate = (
   }
 
   if (userInfo.bio) {
-    md += `${userInfo.bio}\n\n`;
+    md += `${userInfo.bio.split('\n').join('  \n')}\n\n`;
   }
 
   if (userInfo.name || userInfo.title || userInfo.location || userInfo.company || userInfo.bio) {
@@ -457,7 +458,7 @@ const generateTechGridTemplate = (
   }
 
   if (userInfo.bio) {
-    md += `> ${userInfo.bio}\n\n`;
+    md += `> ${userInfo.bio.split('\n').join('  \n> ')}\n\n`;
   }
 
   const skillsList = Object.values(_categoricalSkills).flat() as string[];
@@ -496,7 +497,7 @@ const generateStatsProTemplate = (
   }
 
   if (userInfo.bio) {
-    md += `> ${userInfo.bio}\n\n`;
+    md += `> ${userInfo.bio.split('\n').join('  \n> ')}\n\n`;
   }
 
   const skillsList = Object.values(_categoricalSkills).flat() as string[];

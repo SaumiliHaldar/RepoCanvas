@@ -29,7 +29,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 Repo_Canvas
               </span>
             </div>
-            <span className="text-[9px] font-bold text-cyan-500 uppercase tracking-[0.2em] opacity-80">Readme_Generator_v1.0.1</span>
+            <span className="text-[11px] font-bold text-cyan-500 uppercase tracking-[0.2em] opacity-80">Readme_Generator_v1.0.1</span>
           </div>
         </div>
 
